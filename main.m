@@ -16,7 +16,7 @@ h_fig = figure('Name','空气动力学常用参数计算查询系统',...
     'Units','normalized',...
     'Position',[0.05 0.05 0.64 0.85]);
 
-% 静态文本底布
+% 静态文本底布 为了后续编辑公式显示
 ax_text = axes('Parent',h_fig,...
     'Units','normalized',...
     'Position',[0, 0, 1, 1],...
@@ -24,12 +24,27 @@ ax_text = axes('Parent',h_fig,...
 setappdata(h_fig,'ax_text',ax_text);
 
 %% 创建菜单项
-h_menu = uimenu(h_fig,'label','编辑');
-h_submenu1 = uimenu(h_menu,'label','保存图片',...
+% + 编辑
+%       - 保存图片
+%       - 导入数据
+% + 帮助
+%       - 帮助
+%       - 关于
+
+% 编辑
+h_menu_edit = uimenu(h_fig,'label','编辑');
+h_edit_submenu1 = uimenu(h_menu_edit,'label','保存图片',...
                     'callback','');
-h_submenu2 = uimenu(h_menu,'label','导入数据',...
+h_edit_submenu2 = uimenu(h_menu_edit,'label','导入数据',...
                     'callback','');
 
+% 帮助
+h_menu_help = uimenu(h_fig,'label','帮助');
+h_help_submenu1 = uimenu(h_menu_help,'label','帮助',...
+                    'callback','');
+h_help_submenu2 = uimenu(h_menu_help,'label','关于',...
+                    'callback','');
+                
 %% 创建名称title
 h_text_title = uicontrol(h_fig,'style','text',...
                 'unit','normalized',...
@@ -81,6 +96,7 @@ h_edit_theta = uicontrol(h_fig,'style','edit',...
                     'FontSize',10,...
                     'callback','');
 setappdata(h_fig,'edit_theta',h_edit_theta);
+
 % Ma2
 h_text_ma2 = uicontrol(h_fig,'style','text',...
                     'unit','normalized',...
@@ -188,15 +204,18 @@ setappdata(h_fig,'btn2',btn2)
 
 %% 辅助函数
 function callback_menu(~,~,h_fig)
-% 对于不同的需求
-    text_theta = getappdata(h_fig,'text_theta');
+% 对于用户选择正(斜)激波进行界面变换
+% 斜激波多了theta参数，因此对该参数进行操作
+    text_theta = getappdata(h_fig,'text_theta');    % 获取theta的相关控件
     edit_theta = getappdata(h_fig,'edit_theta');
-    pum = getappdata(h_fig,'pum');
+    pum = getappdata(h_fig,'pum');                  % 获取popupmenu控件数据
     switch pum.Value
         case 1
+            % 当选择1（正激波）则不显示theta
             set(text_theta,'Visible','off');
             set(edit_theta,'Visible','off');
         case 2
+            % 当选择2（斜激波）则显示theta
             set(text_theta,'Visible','on');
             set(edit_theta,'Visible','on');
     end
