@@ -10,7 +10,13 @@ function callback_ma2(~,~,h_fig)
     res_p2p1 = getappdata(h_fig,'res_p2p1');  % 获取p2p1的相关value
     
     m2 = get(edit_ma2,'string');
-    m2 = eval(m2);
+    try
+        m2 = eval(m2);
+    catch
+        m2 = NaN;
+        errordlg('错误！请检查输入！Ma2应为小于1的有理数或算式。','错误警告','on')
+    end
+    
 %% 调用函数
     m1 = normalm2_m1(m2);
     r2r1 = normalm2_RD(m2);
