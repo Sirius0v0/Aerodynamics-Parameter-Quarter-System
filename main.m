@@ -62,6 +62,8 @@ ax_fig = axes('Parent',h_fig,...
     'YTick',[],...
     'Box','On');
 setappdata(h_fig,'ax_fig',ax_fig);
+data.FigIndex = [1, 0, 0, 0];  % 设置初始图像显示关系
+guidata(h_fig,data);
 
 %% 创建输入栏（Ma1,Ma2,theta<根据正负激波显示或隐藏>）
 % Ma1
@@ -207,6 +209,7 @@ btn2 = uicontrol('Style','pushbutton',...
     'Callback',{@callback_btn2,h_fig});
 setappdata(h_fig,'btn2',btn2)
 
-
+%% 设置键盘响应
+set(h_fig,'windowKeyPressFcn',@(~,evnt)callback_keypress(evnt,h_fig));
 %% 辅助函数
 % PATH: Function -> callbackFunc -> ...
