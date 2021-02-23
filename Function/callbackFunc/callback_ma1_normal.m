@@ -1,4 +1,4 @@
-function callback_ma1(~,~,h_fig)
+function callback_ma1_normal(~,~,h_fig)
 % 更改ma1后计算相关值后返回
 
 %% 获取控件句柄
@@ -9,22 +9,28 @@ function callback_ma1(~,~,h_fig)
     res_r2r1 = getappdata(h_fig,'res_r2r1');  % 获取rho2rho1的相关value
     res_p2p1 = getappdata(h_fig,'res_p2p1');  % 获取p2p1的相关value
     
-    m1 = get(edit_ma1,'string');
-    try
-        m1 = eval(m1);
-    catch
-        m1 = NaN;
-        errordlg('错误！请检查输入！Ma1应为大于1的有理数或算式。','错误警告','on')
+    m1 = str2double(get(edit_ma1,'string'));    % 获取m1内容
+    % 检查输入
+    if isnan(m1)
+        errordlg('错误！请检查输入的是否为数值！','错误的输入','modal')
+    else
+        if (m1 < 1)
+            errordlg('Ma1应为不小于1的有理数或算式！','数值警告','modal')
+            m1 = NaN;   % 置m1为NaN以取消显示
+        end
     end
+
 %% 调用函数
     m2 = normalm1_m2(m1);
     r2r1 = normalm1_RD(m1);
     p2p1 = normalm1_RP(m1);
     T2T1 = normalm1_RT(m1);
+    beta = 90;      % 正激波激波角=90degree
     
 %% 设置返回
     set(edit_ma2,'string',string(m2));
     set(res_T2T1,'string',string(T2T1));
     set(res_p2p1,'string',string(p2p1));
     set(res_r2r1,'string',string(r2r1));
+    set(res_beta,'string',strcat(string(beta),'°' ));
 end
