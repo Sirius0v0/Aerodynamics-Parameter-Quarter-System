@@ -62,7 +62,11 @@ ax_fig = axes('Parent',h_fig,...
     'YTick',[],...
     'Box','On');
 setappdata(h_fig,'ax_fig',ax_fig);
+
+%% 用户数据暂存记录
 data.FigIndex = [1, 0, 0, 0];  % 设置初始图像显示关系
+data.NormalGraphExist = 0;      % 记录尚未画图
+data.ObilqueGraphExist = 0;     % 记录尚未画图
 guidata(h_fig,data);
 
 %% 创建输入栏（Ma1,Ma2,theta<根据正负激波显示或隐藏>）

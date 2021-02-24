@@ -1,6 +1,7 @@
 function callback_btn1(~,~,h_fig)
 % 绘图程序控件
-
+data = guidata(h_fig);
+if ~data.NormalGraphExist
 %% 获取控件句柄
     pum = getappdata(h_fig,'pum');                  % 获取popupmenu控件数据
 %% 调用函数
@@ -9,10 +10,14 @@ function callback_btn1(~,~,h_fig)
         case 1
             % 当选择1（正激波）则绘制所有图 并仅显示其中一个，其他设置为不可见
             normal_graph_init
+            data.NormalGraphExist = 1;      % 记录已画图
+            guidata(h_fig,data);            % 保存数据
         case 2
             % 当选择2（斜激波）则
             
     end
 %% 设置返回
+
+end
 
 end
