@@ -9,9 +9,11 @@ function callback_menu(~,~,h_fig)
             % 当选择1（正激波）则不显示theta
             set(text_theta,'Visible','off');
             set(edit_theta,'Visible','off');
+            callback_switchFig(h_fig);
         case 2
             % 当选择2（斜激波）则显示theta
             set(text_theta,'Visible','on');
             set(edit_theta,'Visible','on');
+            callback_switchFig(h_fig);
     end
 end
