@@ -24,6 +24,8 @@ ax_text = axes('Parent',h_fig,...
 setappdata(h_fig,'ax_text',ax_text);
 
 %% 创建菜单项
+% + 文件
+%       - 退出
 % + 编辑
 %       - 保存图片
 %       - 导入数据
@@ -31,6 +33,11 @@ setappdata(h_fig,'ax_text',ax_text);
 %       - 帮助
 %       - 关于
 
+% 文件
+h_menu_file = uimenu(h_fig,'label','文件');
+h_file_submenu1 = uimenu(h_menu_file,'label','退出',...
+                    'callback',{@callback_quit,h_fig});
+                
 % 编辑
 h_menu_edit = uimenu(h_fig,'label','编辑');
 h_edit_submenu1 = uimenu(h_menu_edit,'label','保存图片',...
@@ -64,9 +71,11 @@ ax_fig = axes('Parent',h_fig,...
 setappdata(h_fig,'ax_fig',ax_fig);
 
 %% 用户数据暂存记录
-data.FigIndex = [1, 0, 0, 0];  % 设置初始图像显示关系
+data.FigHandleName = {'fig_ma2','fig_r2r1','fig_p2p1','fig_t2t1',...
+    'fig_obliq_beta','fig_obliq_r2r1','fig_obliq_p2p1','fig_obliq_t2t1'};   % 设置图像句柄名称
+data.FigIndex = [1, 0, 0, 0];  % 设置正激波初始图像显示关系
 data.NormalGraphExist = 0;      % 记录尚未画图
-data.ObilqueGraphExist = 0;     % 记录尚未画图
+data.ObliqueGraphExist = 0;     % 记录尚未画图
 guidata(h_fig,data);
 
 %% 创建输入栏（Ma1,Ma2,theta<根据正负激波显示或隐藏>）
@@ -216,5 +225,9 @@ setappdata(h_fig,'btn2',btn2)
 
 %% 设置键盘响应
 set(h_fig,'windowKeyPressFcn',@(~,evnt)callback_keypress(evnt,h_fig));
+
+%% 设置窗口关闭提示
+set(h_fig,'CloseRequestFcn',{@callback_quit,h_fig});
+
 %% 辅助函数
 % PATH: Function -> callbackFunc -> ...
