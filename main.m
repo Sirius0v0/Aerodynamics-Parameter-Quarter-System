@@ -76,6 +76,7 @@ data.FigHandleName = {'fig_ma2','fig_r2r1','fig_p2p1','fig_t2t1',...
 data.FigIndex = [1, 0, 0, 0];  % 设置正激波初始图像显示关系
 data.NormalGraphExist = 0;      % 记录尚未画图
 data.ObliqueGraphExist = 0;     % 记录尚未画图
+data.MarkPoint = [0,0];
 guidata(h_fig,data);
 
 %% 创建输入栏（Ma1,Ma2,theta<根据正负激波显示或隐藏>）
@@ -228,6 +229,10 @@ set(h_fig,'windowKeyPressFcn',@(~,evnt)callback_keypress(evnt,h_fig));
 
 %% 设置窗口关闭提示
 set(h_fig,'CloseRequestFcn',{@callback_quit,h_fig});
+
+%% 设置鼠标相应
+set(h_fig,'WindowButtonMotionFcn',{@callback_motion,h_fig});    % 设置鼠标形状
+set(h_fig,'WindowButtonDownFcn',{@callback_buttondown,h_fig});  % 设置鼠标Shift+左键（或滚轮键）
 
 %% 辅助函数
 % PATH: Function -> callbackFunc -> ...
