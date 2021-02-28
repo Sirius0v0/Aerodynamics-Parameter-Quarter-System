@@ -1,5 +1,5 @@
-%-----------é»˜è®¤Ma2-Ma1ä¸ºåˆå§‹å›¾åƒ-------------%
-% ç”±ç»˜å›¾æŒ‰é’®btn1è°ƒç”¨åˆå§‹åŒ–ï¼Œå¯è·å¾—å¥æŸ„h_fig
+%-----------Ä¬ÈÏMa2-Ma1Îª³õÊ¼Í¼Ïñ-------------%
+% ÓÉ»æÍ¼°´Å¥btn1µ÷ÓÃ³õÊ¼»¯£¬¿É»ñµÃ¾ä±úh_fig
 %% Ma2-Ma1
 fig_ma2 = axes('Parent',h_fig,...
                         'Units','normalized',...
@@ -10,7 +10,7 @@ fig_ma2 = axes('Parent',h_fig,...
 setappdata(h_fig,'fig_ma2',fig_ma2);
 
 plot(fig_ma2,1:0.01:30,normalm1_m2(1:0.01:30));
-title('M2éšM1å˜åŒ–è§„å¾‹');
+title('M2ËæM1±ä»¯¹æÂÉ');
 xlabel('M1');
 ylabel('M2');
 
@@ -24,9 +24,9 @@ fig_r2r1 = axes('Parent',h_fig,...
 setappdata(h_fig,'fig_r2r1',fig_r2r1);
 
 plot(fig_r2r1,1:0.01:30,normalm1_RD(1:0.01:30));
-title('Ï2/Ï1éšM1å˜åŒ–è§„å¾‹');
+title('¦Ñ2/¦Ñ1ËæM1±ä»¯¹æÂÉ');
 xlabel('M1');
-ylabel('Ï2/Ï1');
+ylabel('¦Ñ2/¦Ñ1');
 
 %% RP-Ma1
 fig_p2p1 = axes('Parent',h_fig,...
@@ -38,7 +38,7 @@ fig_p2p1 = axes('Parent',h_fig,...
 setappdata(h_fig,'fig_p2p1',fig_p2p1);
 
 plot(fig_p2p1,1:0.01:30,normalm1_RP(1:0.01:30));
-title('P2/P1éšM1å˜åŒ–è§„å¾‹');
+title('P2/P1ËæM1±ä»¯¹æÂÉ');
 xlabel('M1');
 ylabel('P2/P1');
 
@@ -52,9 +52,9 @@ fig_t2t1 = axes('Parent',h_fig,...
 setappdata(h_fig,'fig_t2t1',fig_t2t1);
 
 plot(fig_t2t1,1:0.01:30,normalm1_RT(1:0.01:30));
-title('T2/T1éšM1å˜åŒ–è§„å¾‹');
+title('T2/T1ËæM1±ä»¯¹æÂÉ');
 xlabel('M1');
 ylabel('T2/T1');
 
-%% åˆå§‹åŒ–å¯è§æ€§
+%% ³õÊ¼»¯¿É¼ûĞÔ
 callback_switchFig(h_fig)

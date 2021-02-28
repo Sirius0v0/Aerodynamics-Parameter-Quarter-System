@@ -1,26 +1,26 @@
 function callback_btn1(~,~,h_fig)
-% ç»˜å›¾ç¨‹åºæ§ä»¶
+% »æÍ¼³ÌĞò¿Ø¼ş
 data = guidata(h_fig);
 
-%% è·å–æ§ä»¶å¥æŸ„
-    pum = getappdata(h_fig,'pum');                  % è·å–popupmenuæ§ä»¶æ•°æ®
-%% è°ƒç”¨å‡½æ•°
-%----------- åˆ¤åˆ«æ­£æ–œæ¿€æ³¢ ------------%
+%% »ñÈ¡¿Ø¼ş¾ä±ú
+    pum = getappdata(h_fig,'pum');                  % »ñÈ¡popupmenu¿Ø¼şÊı¾İ
+%% µ÷ÓÃº¯Êı
+%----------- ÅĞ±ğÕıĞ±¼¤²¨ ------------%
     switch pum.Value
         case 1
             if ~data.NormalGraphExist
-                % å½“é€‰æ‹©1ï¼ˆæ­£æ¿€æ³¢ï¼‰åˆ™ç»˜åˆ¶æ‰€æœ‰å›¾ å¹¶ä»…æ˜¾ç¤ºå…¶ä¸­ä¸€ä¸ªï¼Œå…¶ä»–è®¾ç½®ä¸ºä¸å¯è§
-                data.NormalGraphExist = 1;      % è®°å½•å·²ç”»å›¾
-                guidata(h_fig,data);            % ä¿å­˜æ•°æ®
+                % µ±Ñ¡Ôñ1£¨Õı¼¤²¨£©Ôò»æÖÆËùÓĞÍ¼ ²¢½öÏÔÊ¾ÆäÖĞÒ»¸ö£¬ÆäËûÉèÖÃÎª²»¿É¼û
+                data.NormalGraphExist = 1;      % ¼ÇÂ¼ÒÑ»­Í¼
+                guidata(h_fig,data);            % ±£´æÊı¾İ
                 normal_graph_init
             end
         case 2
             if ~data.ObliqueGraphExist
-                % å½“é€‰æ‹©2ï¼ˆæ–œæ¿€æ³¢ï¼‰åˆ™ç»˜åˆ¶æ‰€æœ‰å›¾ å¹¶ä»…æ˜¾ç¤ºå…¶ä¸­ä¸€ä¸ªï¼Œå…¶ä»–è®¾ç½®ä¸ºä¸å¯è§
-                data.ObliqueGraphExist = 1;      % è®°å½•å·²ç”»å›¾
-                guidata(h_fig,data);            % ä¿å­˜æ•°æ®
+                % µ±Ñ¡Ôñ2£¨Ğ±¼¤²¨£©Ôò»æÖÆËùÓĞÍ¼ ²¢½öÏÔÊ¾ÆäÖĞÒ»¸ö£¬ÆäËûÉèÖÃÎª²»¿É¼û
+                data.ObliqueGraphExist = 1;      % ¼ÇÂ¼ÒÑ»­Í¼
+                guidata(h_fig,data);            % ±£´æÊı¾İ
                 oblique_graph_init
             end
     end
-%% è®¾ç½®è¿”å›
+%% ÉèÖÃ·µ»Ø
 end

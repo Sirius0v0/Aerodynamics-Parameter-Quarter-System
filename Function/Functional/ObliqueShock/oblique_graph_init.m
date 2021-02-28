@@ -1,5 +1,5 @@
-%-----------é»˜è®¤beta-Ma1ä¸ºåˆå§‹å›¾åƒ-------------%
-% ç”±ç»˜å›¾æŒ‰é’®btn1è°ƒç”¨åˆå§‹åŒ–ï¼Œå¯è·å¾—å¥æŸ„h_fig
+%-----------Ä¬ÈÏbeta-Ma1Îª³õÊ¼Í¼Ïñ-------------%
+% ÓÉ»æÍ¼°´Å¥btn1µ÷ÓÃ³õÊ¼»¯£¬¿É»ñµÃ¾ä±úh_fig
 %% beta-Ma1
 fig_obliq_beta = axes('Parent',h_fig,...
                         'Units','normalized',...
@@ -15,15 +15,15 @@ i = 1;
 for d = [2 8 12 18 24 36]
     S =@(Ma1,b) tand(d)-(Ma1.^2.*sind(b).^2-1)./((1+Ma1.^2.*((r+1)./2-sind(b).^2)).*tand(b));
     fimplicit(fig_obliq_beta,S,[1,10,5,100],'LineWidth',1);
-    legend_str{i} = ['\delta =' num2str(d) 'Â°'];
+    legend_str{i} = ['\delta =' num2str(d) '¡ã'];
     i = i+1;
     hold on;
 end
 hold off;
-set(fig_obliq_beta,'XScale', 'log') %xè½´å–å¯¹æ•°åæ ‡
+set(fig_obliq_beta,'XScale', 'log') %xÖáÈ¡¶ÔÊı×ø±ê
 set(fig_obliq_beta,'Xtick',1:10)
 title(['\beta -','Ma_1',' Figure']);
-ylabel(['\beta','/(Â°)']);
+ylabel(['\beta','/(¡ã)']);
 xlabel('Ma_1');
 grid on;
 set(fig_obliq_beta,'GridLineStyle','--')
@@ -39,7 +39,7 @@ legend(legend_str,'Location','bestoutside');
 % setappdata(h_fig,'fig_obliq_ma2',fig_obliq_ma2);
 % 
 % % plot(fig_obliq_ma2,1:0.01:30,normalm1_m2(1:0.01:30));
-% title('M2éšM1å˜åŒ–è§„å¾‹');
+% title('M2ËæM1±ä»¯¹æÂÉ');
 % xlabel('M1');
 % ylabel('M2');
 
@@ -56,14 +56,14 @@ i = 1;
 for d = [2 8 12 18 24 36]
     F =@(ma1,Rho) tand(d).^2-(ma1.^2.*(2*Rho./((r+1)*ma1.^2-Rho.*(r-1).*ma1.^2))-1).^2.*(1-(2.*Rho./((r+1).*ma1.^2-Rho.*(r-1).*ma1.^2)))./(1+ma1.^2.*(r./2+0.5-(2.*Rho./((r+1).*ma1.^2-Rho.*(r-1).*ma1.^2)))).^2./(2.*Rho./((r+1).*ma1.^2-Rho.*(r-1).*ma1.^2));
     fimplicit(fig_obliq_r2r1,F,[1,10,1,6],'LineWidth',1);
-    legend_str{i} = ['\delta =' num2str(d) 'Â°'];
+    legend_str{i} = ['\delta =' num2str(d) '¡ã'];
     i = i+1;
     hold on
 end
 hold off
 grid on
 set(fig_obliq_r2r1,'GridLineStyle','--')
-set(fig_obliq_r2r1,'XScale', 'log') %xè½´å–å¯¹æ•°åæ ‡
+set(fig_obliq_r2r1,'XScale', 'log') %xÖáÈ¡¶ÔÊı×ø±ê
 set(fig_obliq_r2r1,'Xtick',1:10)
 title(['\rho_2','/','\rho_1','-','Ma_1 Figure'])
 xlabel('Ma_1')
@@ -83,7 +83,7 @@ i = 1;
 for d=[2 8 12 18 24 36]
     f=@(Ma1,P) tand(d).^2-(Ma1.^2.*((P.*(r+1)+(r-1))./2./r./Ma1.^2)-1).^2.*(1-((P.*(r+1)+(r-1))./2./r./Ma1.^2))./(1+Ma1.^2.*(r./2+0.5-((P.*(r+1)+(r-1))./2./r./Ma1.^2))).^2./((P.*(r+1)+(r-1))./2./r./Ma1.^2);
     fimplicit(fig_obliq_p2p1,f,[1,10],'LineWidth',0.8);
-    legend_str{i} = ['\delta =' num2str(d) 'Â°'];
+    legend_str{i} = ['\delta =' num2str(d) '¡ã'];
     i = i+1;
     hold on
 end
@@ -93,7 +93,7 @@ title(['p_2','/','p_1','-','Ma_1 Figure'])
 xlabel('Ma_1')
 ylabel(['p_2','/','p_1'])
 set(fig_obliq_p2p1,'GridLineStyle','--')
-set(fig_obliq_p2p1,'YScale', 'log') %yè½´å–å¯¹æ•°åæ ‡
+set(fig_obliq_p2p1,'YScale', 'log') %yÖáÈ¡¶ÔÊı×ø±ê
 set(fig_obliq_p2p1,'Ytick',1:10)
 legend(legend_str,'Location','bestoutside');
 
@@ -115,19 +115,19 @@ for d = [2 8 12 18 24 36]
     Ff = tand(d)^2-(ma1^2*B-1)^2*(1-B)/(1+ma1^2*(r/2+0.5-B))^2/B;
     fun = matlabFunction(Ff);
     fimplicit(fig_obliq_t2t1,fun,[1,10,1,6],'LineWidth',1);
-    legend_str{i} = ['\delta =' num2str(d) 'Â°'];
+    legend_str{i} = ['\delta =' num2str(d) '¡ã'];
     i = i+1;
     hold on
 end
 hold off
 grid on
 set(fig_obliq_t2t1,'GridLineStyle','--')
-set(fig_obliq_t2t1,'XScale', 'log') %xè½´å–å¯¹æ•°åæ ‡
+set(fig_obliq_t2t1,'XScale', 'log') %xÖáÈ¡¶ÔÊı×ø±ê
 set(fig_obliq_t2t1,'Xtick',1:10)
 title(['T_2','/','T_1','-','Ma_1 Figure'])
 xlabel('Ma_1')
 ylabel(['T_2','/','T_1'])
 legend(legend_str,'Location','bestoutside');
 
-%% åˆå§‹åŒ–å¯è§æ€§
+%% ³õÊ¼»¯¿É¼ûĞÔ
 callback_switchFig(h_fig)

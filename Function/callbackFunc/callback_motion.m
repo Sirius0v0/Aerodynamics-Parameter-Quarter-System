@@ -1,19 +1,19 @@
 function callback_motion(~,~,h_fig)
-% æ”¹å˜é¼ æ ‡å½¢çŠ¶
-%% è·å–æ•°æ®
+% ¸Ä±äÊó±êĞÎ×´
+%% »ñÈ¡Êı¾İ
 data = guidata(h_fig);
-gcaa = gca;     % è·å–å½“å‰å›¾çª—å¥æŸ„
-point = get(gcaa,'CurrentPoint');   % è·å–é¼ æ ‡å½“å‰åæ ‡
+gcaa = gca;     % »ñÈ¡µ±Ç°Í¼´°¾ä±ú
+point = get(gcaa,'CurrentPoint');   % »ñÈ¡Êó±êµ±Ç°×ø±ê
 
-%% è®¾ç½®é¼ æ ‡å½¢çŠ¶
+%% ÉèÖÃÊó±êĞÎ×´
 if data.NormalGraphExist || data.ObliqueGraphExist
-    % å¦‚æœç”»äº†å›¾åˆ™å¯ç”¨
+    % Èç¹û»­ÁËÍ¼ÔòÆôÓÃ
     if min(((point(1,1)-gcaa.Children(end).XData).^2 + (point(1,2)-gcaa.Children(end).YData).^2).^.5) < ...
             0.05 * ( min(gcaa.XLim(2)-gcaa.XLim(1), gcaa.YLim(2)-gcaa.YLim(1)) )
-        % å½“é è¿‘çº¿æ¡ åˆ™
-        set(gcf,'Pointer','hand') % è®¾ç½®ä¸ºæ‰‹çš„å½¢çŠ¶
+        % µ±¿¿½üÏßÌõ Ôò
+        set(gcf,'Pointer','hand') % ÉèÖÃÎªÊÖµÄĞÎ×´
     else
-        set(gcf,'Pointer','arrow') % è®¾ç½®ä¸ºç®­å¤´çš„å½¢çŠ¶
+        set(gcf,'Pointer','arrow') % ÉèÖÃÎª¼ıÍ·µÄĞÎ×´
     end
 end
 end

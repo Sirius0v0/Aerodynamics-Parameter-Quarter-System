@@ -1,17 +1,17 @@
 function callback_menu(~,~,h_fig)
-% å¯¹äºç”¨æˆ·é€‰æ‹©æ­£(æ–œ)æ¿€æ³¢è¿›è¡Œç•Œé¢å˜æ¢
-% æ–œæ¿€æ³¢å¤šäº†thetaå‚æ•°ï¼Œå› æ­¤å¯¹è¯¥å‚æ•°è¿›è¡Œæ“ä½œ
-    text_theta = getappdata(h_fig,'text_theta');    % è·å–thetaçš„ç›¸å…³æ§ä»¶
+% ¶ÔÓÚÓÃ»§Ñ¡ÔñÕı(Ğ±)¼¤²¨½øĞĞ½çÃæ±ä»»
+% Ğ±¼¤²¨¶àÁËtheta²ÎÊı£¬Òò´Ë¶Ô¸Ã²ÎÊı½øĞĞ²Ù×÷
+    text_theta = getappdata(h_fig,'text_theta');    % »ñÈ¡thetaµÄÏà¹Ø¿Ø¼ş
     edit_theta = getappdata(h_fig,'edit_theta');
-    pum = getappdata(h_fig,'pum');                  % è·å–popupmenuæ§ä»¶æ•°æ®
+    pum = getappdata(h_fig,'pum');                  % »ñÈ¡popupmenu¿Ø¼şÊı¾İ
     switch pum.Value
         case 1
-            % å½“é€‰æ‹©1ï¼ˆæ­£æ¿€æ³¢ï¼‰åˆ™ä¸æ˜¾ç¤ºtheta
+            % µ±Ñ¡Ôñ1£¨Õı¼¤²¨£©Ôò²»ÏÔÊ¾theta
             set(text_theta,'Visible','off');
             set(edit_theta,'Visible','off');
             callback_switchFig(h_fig);
         case 2
-            % å½“é€‰æ‹©2ï¼ˆæ–œæ¿€æ³¢ï¼‰åˆ™æ˜¾ç¤ºtheta
+            % µ±Ñ¡Ôñ2£¨Ğ±¼¤²¨£©ÔòÏÔÊ¾theta
             set(text_theta,'Visible','on');
             set(edit_theta,'Visible','on');
             callback_switchFig(h_fig);
