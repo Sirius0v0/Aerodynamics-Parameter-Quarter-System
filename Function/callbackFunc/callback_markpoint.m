@@ -1,18 +1,18 @@
 function callback_markpoint(h_fig)
-% æ ‡è®°è¢«é€‰ä¸­çš„ç‚¹
+% ±ê¼Ç±»Ñ¡ÖĞµÄµã
 hold on
 gcaa = gca;
 data = guidata(h_fig);
 X = data.MarkPoint(1);
-Y = data.MarkPoint(2);      % è¯»å–è¢«é€‰ä¸­çš„ç‚¹åæ ‡
-if isempty( getappdata(h_fig,'markH') )     % å¦‚æœæ²¡åˆ›å»ºæ ‡è®°ç‚¹åˆ™åˆ›å»º
+Y = data.MarkPoint(2);      % ¶ÁÈ¡±»Ñ¡ÖĞµÄµã×ø±ê
+if isempty( getappdata(h_fig,'markH') )     % Èç¹ûÃ»´´½¨±ê¼ÇµãÔò´´½¨
     markH = plot(gca,X,Y,'b.','MarkerSize',20);
     setappdata(h_fig,'markH',markH);
-else    % å¦åˆ™è¯»å–ä¹‹å‰åˆ›å»ºçš„åæ ‡å¥æŸ„
+else    % ·ñÔò¶ÁÈ¡Ö®Ç°´´½¨µÄ×ø±ê¾ä±ú
     markH = gcaa.Children(1);
 end
-set(markH,'Visible',0); % éšè—ä¸Šä¸€æ¬¡çš„ç‚¹
-markH = plot(gca,X,Y,'b.','MarkerSize',20,'visible',1); % ç»˜åˆ¶æ–°é€‰æ‹©çš„ç‚¹
+delete(markH) % Òş²ØÉÏÒ»´ÎµÄµã
+markH = plot(gca,X,Y,'b.','MarkerSize',20,'visible',1); % »æÖÆĞÂÑ¡ÔñµÄµã
 
 hold off
 end

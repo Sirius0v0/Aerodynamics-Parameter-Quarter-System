@@ -1,9 +1,9 @@
 function array_after = translation(array,direction)
-%  å°†æ•°ç»„å‘å·¦æˆ–å‘å³ç§»ä½ä¸€ä¸ªå•ä½
-%  @ array: è¾“å…¥æ•°ç»„
-%  @ direction: è¾“å…¥ç§»ä½æ–¹å‘
-%           - 'right'<defult>: å³ç§»ï¼ˆç¼ºçœå€¼ï¼‰
-%           - 'left': å·¦ç§»
+%  ½«Êı×éÏò×ó»òÏòÓÒÒÆÎ»Ò»¸öµ¥Î»
+%  @ array: ÊäÈëÊı×é
+%  @ direction: ÊäÈëÒÆÎ»·½Ïò
+%           - 'right'<defult>: ÓÒÒÆ£¨È±Ê¡Öµ£©
+%           - 'left': ×óÒÆ
 
 if nargin == 1
     direction = 'right';

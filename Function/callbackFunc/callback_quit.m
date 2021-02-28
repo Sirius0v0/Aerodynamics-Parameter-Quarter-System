@@ -1,7 +1,7 @@
 function callback_quit(~,~,h_fig)
-% é€€å‡ºç¨‹åº
+% ÍË³ö³ÌĞò
 
-selection = questdlg('æ˜¯å¦é€€å‡ºç¨‹åºï¼Ÿ','é€€å‡ºè¯·æ±‚','Yes','No','Yes');
+selection = questdlg('ÊÇ·ñÍË³ö³ÌĞò£¿','ÍË³öÇëÇó','Yes','No','Yes');
 switch selection
     case 'Yes'
         delete(h_fig)

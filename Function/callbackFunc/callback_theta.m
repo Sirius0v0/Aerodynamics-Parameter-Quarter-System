@@ -1,29 +1,29 @@
 function callback_theta(~,~,h_fig)
-% æ›´æ”¹thetaåè®¡ç®—ç›¸å…³å€¼åè¿”å›
+% ¸ü¸Äthetaºó¼ÆËãÏà¹ØÖµºó·µ»Ø
 
-%% è·å–æ§ä»¶å¥æŸ„
-    edit_ma1 = getappdata(h_fig,'edit_ma1');    % è·å–Ma1çš„ç›¸å…³value
-    edit_ma2 = getappdata(h_fig,'edit_ma2');    % è·å–Ma2çš„ç›¸å…³value
-    res_beta = getappdata(h_fig,'res_beta');  % è·å–betaçš„ç›¸å…³value
-    res_T2T1 = getappdata(h_fig,'res_T2T1');  % è·å–T2T2çš„ç›¸å…³value
-    res_r2r1 = getappdata(h_fig,'res_r2r1');  % è·å–rho2rho1çš„ç›¸å…³value
-    res_p2p1 = getappdata(h_fig,'res_p2p1');  % è·å–p2p1çš„ç›¸å…³value
+%% »ñÈ¡¿Ø¼ş¾ä±ú
+    edit_ma1 = getappdata(h_fig,'edit_ma1');    % »ñÈ¡Ma1µÄÏà¹Øvalue
+    edit_ma2 = getappdata(h_fig,'edit_ma2');    % »ñÈ¡Ma2µÄÏà¹Øvalue
+    res_beta = getappdata(h_fig,'res_beta');  % »ñÈ¡betaµÄÏà¹Øvalue
+    res_T2T1 = getappdata(h_fig,'res_T2T1');  % »ñÈ¡T2T2µÄÏà¹Øvalue
+    res_r2r1 = getappdata(h_fig,'res_r2r1');  % »ñÈ¡rho2rho1µÄÏà¹Øvalue
+    res_p2p1 = getappdata(h_fig,'res_p2p1');  % »ñÈ¡p2p1µÄÏà¹Øvalue
     
-    theta = str2double(get(edit_theta,'string'));    % è·å–thetaå†…å®¹
-    % æ£€æŸ¥è¾“å…¥
+    theta = str2double(get(edit_theta,'string'));    % »ñÈ¡thetaÄÚÈİ
+    % ¼ì²éÊäÈë
     if isnan(theta)
-        errordlg('é”™è¯¯ï¼è¯·æ£€æŸ¥è¾“å…¥çš„æ˜¯å¦ä¸ºæ•°å€¼ï¼','é”™è¯¯çš„è¾“å…¥','modal')
+        errordlg('´íÎó£¡Çë¼ì²éÊäÈëµÄÊÇ·ñÎªÊıÖµ£¡','´íÎóµÄÊäÈë','modal')
     else
 
     end
 
-%% è°ƒç”¨å‡½æ•°è®¡ç®—
+%% µ÷ÓÃº¯Êı¼ÆËã
     
-%% è®¾ç½®è¿”å›
+%% ÉèÖÃ·µ»Ø
     set(edit_ma1,'string',string(m1));
     set(edit_ma2,'string',string(m2));
     set(res_T2T1,'string',string(T2T1));
     set(res_p2p1,'string',string(p2p1));
     set(res_r2r1,'string',string(r2r1));
-    set(res_beta,'string',strcat(string(beta),'Â°' ));
+    set(res_beta,'string',strcat(string(beta),'¡ã' ));
 end

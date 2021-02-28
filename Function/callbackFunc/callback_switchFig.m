@@ -1,8 +1,8 @@
 function callback_switchFig(h_fig)
-% åˆ‡æ¢å·²ç»˜åˆ¶çš„å›¾
-% æŒ‰ç…§ ma2 --> r2r1 --> p2p1 --> T2T1 --> ma2 çš„å¾ªç¯é¡ºåº
+% ÇĞ»»ÒÑ»æÖÆµÄÍ¼
+% °´ÕÕ ma2 --> r2r1 --> p2p1 --> T2T1 --> ma2 µÄÑ­»·Ë³Ğò
 
-%% è·å–æ§ä»¶å¥æŸ„
+%% »ñÈ¡¿Ø¼ş¾ä±ú
     fig_ma2 = getappdata(h_fig,'fig_ma2');
     fig_r2r1 = getappdata(h_fig,'fig_r2r1');
     fig_p2p1 = getappdata(h_fig,'fig_p2p1');
@@ -11,35 +11,35 @@ function callback_switchFig(h_fig)
     fig_obliq_r2r1 = getappdata(h_fig,'fig_obliq_r2r1');
     fig_obliq_p2p1 = getappdata(h_fig,'fig_obliq_p2p1');
     fig_obliq_t2t1 = getappdata(h_fig,'fig_obliq_t2t1');
-    pum = getappdata(h_fig,'pum');                  % è·å–popupmenuæ§ä»¶æ•°æ®
+    pum = getappdata(h_fig,'pum');                  % »ñÈ¡popupmenu¿Ø¼şÊı¾İ
     data = guidata(h_fig);
     
     index = data.FigIndex;
     
     
-%% è°ƒç”¨å‡½æ•°
-%----------- åˆ¤åˆ«æ­£æ–œæ¿€æ³¢ ------------%
+%% µ÷ÓÃº¯Êı
+%----------- ÅĞ±ğÕıĞ±¼¤²¨ ------------%
     switch pum.Value
         case 1
-            % å½“é€‰æ‹©1ï¼ˆæ­£æ¿€æ³¢ï¼‰åˆ™ç»˜åˆ¶æ‰€æœ‰å›¾ å¹¶ä»…æ˜¾ç¤ºå…¶ä¸­ä¸€ä¸ªï¼Œå…¶ä»–è®¾ç½®ä¸ºä¸å¯è§
+            % µ±Ñ¡Ôñ1£¨Õı¼¤²¨£©Ôò»æÖÆËùÓĞÍ¼ ²¢½öÏÔÊ¾ÆäÖĞÒ»¸ö£¬ÆäËûÉèÖÃÎª²»¿É¼û
             
-%             % è®¾ç½®Ma2-Ma1å¯è§æ€§
+%             % ÉèÖÃMa2-Ma1¿É¼ûĞÔ
 %             set(fig_ma2,'Visible',index(1))
 %             set(fig_ma2.Children,'Visible',index(1))
 % 
-%             % è®¾ç½®r2r1-Ma1å¯è§æ€§
+%             % ÉèÖÃr2r1-Ma1¿É¼ûĞÔ
 %             set(fig_r2r1,'Visible',index(2))
 %             set(fig_r2r1.Children,'Visible',index(2))
 % 
-%             % è®¾ç½®p2p1-Ma1å¯è§æ€§
+%             % ÉèÖÃp2p1-Ma1¿É¼ûĞÔ
 %             set(fig_p2p1,'Visible',index(3))
 %             set(fig_p2p1.Children,'Visible',index(3))
 % 
-%             % è®¾ç½®T2T1-Ma1å¯è§æ€§
+%             % ÉèÖÃT2T1-Ma1¿É¼ûĞÔ
 %             set(fig_t2t1,'Visible',index(4))
 %             set(fig_t2t1.Children,'Visible',index(4))
               if data.ObliqueGraphExist
-                  % å¦‚æœå­˜åœ¨æ–œæ¿€æ³¢çš„å›¾ åˆ™å…¨éƒ¨éšè—
+                  % Èç¹û´æÔÚĞ±¼¤²¨µÄÍ¼ ÔòÈ«²¿Òş²Ø
                   set(eval(data.FigHandleName{find(index == 1)+4}), 'visible',0 );
                   set(eval(data.FigHandleName{find(index == 1)+4}).Children, 'visible',0 );
                   set(eval(data.FigHandleName{find(index == 1)+4}).Legend, 'visible',0 );
@@ -47,40 +47,40 @@ function callback_switchFig(h_fig)
               
               if data.NormalGraphExist
                   for jj = 1:4
-                      % æ›¿ä»£ä¸Šè¿°æ³¨é‡Šå†…å®¹
+                      % Ìæ´úÉÏÊö×¢ÊÍÄÚÈİ
                       set(eval(data.FigHandleName{jj}), 'visible',index(jj) );
                       set(eval(data.FigHandleName{jj}).Children, 'visible',index(jj) );
                   end
               end
               
         case 2
-            % å½“é€‰æ‹©2ï¼ˆæ–œæ¿€æ³¢ï¼‰åˆ™ç»˜åˆ¶æ‰€æœ‰å›¾ å¹¶ä»…æ˜¾ç¤ºå…¶ä¸­ä¸€ä¸ªï¼Œå…¶ä»–è®¾ç½®ä¸ºä¸å¯è§
+            % µ±Ñ¡Ôñ2£¨Ğ±¼¤²¨£©Ôò»æÖÆËùÓĞÍ¼ ²¢½öÏÔÊ¾ÆäÖĞÒ»¸ö£¬ÆäËûÉèÖÃÎª²»¿É¼û
             
-%             % è®¾ç½®beta-Ma1å¯è§æ€§
+%             % ÉèÖÃbeta-Ma1¿É¼ûĞÔ
 %             set(fig_obliq_beta,'Visible',index(1))
 %             set(fig_obliq_beta.Children,'Visible',index(1))
 % 
-%             % è®¾ç½®r2r1-Ma1å¯è§æ€§
+%             % ÉèÖÃr2r1-Ma1¿É¼ûĞÔ
 %             set(fig_obliq_r2r1,'Visible',index(2))
 %             set(fig_obliq_r2r1.Children,'Visible',index(2))
 % 
-%             % è®¾ç½®p2p1-Ma1å¯è§æ€§
+%             % ÉèÖÃp2p1-Ma1¿É¼ûĞÔ
 %             set(fig_obliq_p2p1,'Visible',index(3))
 %             set(fig_obliq_p2p1.Children,'Visible',index(3))
 % 
-%             % è®¾ç½®T2T1-Ma1å¯è§æ€§
+%             % ÉèÖÃT2T1-Ma1¿É¼ûĞÔ
 %             set(fig_obliq_t2t1,'Visible',index(4))
 %             set(fig_obliq_t2t1.Children,'Visible',index(4))
 
               if data.NormalGraphExist
-                  % å¦‚æœå­˜åœ¨æ­£æ¿€æ³¢çš„å›¾ åˆ™å…¨éƒ¨éšè—
+                  % Èç¹û´æÔÚÕı¼¤²¨µÄÍ¼ ÔòÈ«²¿Òş²Ø
                   set(eval(data.FigHandleName{find(index == 1)}), 'visible',0 );
                   set(eval(data.FigHandleName{find(index == 1)}).Children, 'visible',0 );
               end
               
               if data.ObliqueGraphExist
                   for jj = 1:4
-                      % æ›¿ä»£ä¸Šè¿°æ³¨é‡Šå†…å®¹
+                      % Ìæ´úÉÏÊö×¢ÊÍÄÚÈİ
                       set(eval(data.FigHandleName{jj+4}), 'visible',index(jj) );
                       set(eval(data.FigHandleName{jj+4}).Children, 'visible',index(jj) );
                       set(eval(data.FigHandleName{jj+4}).Legend, 'visible',index(jj) );

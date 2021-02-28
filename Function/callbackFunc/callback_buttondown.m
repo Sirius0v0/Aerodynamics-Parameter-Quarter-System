@@ -1,24 +1,24 @@
 function callback_buttondown(~,~,h_fig)
-% è®¾ç½®Shift+å·¦é”®ï¼ˆæˆ–æ»šè½®é”®ï¼‰é€‰æ‹©å›¾ä¸Šç‚¹
-%% è·å¾—æ•°æ®
+% ÉèÖÃShift+×ó¼ü£¨»ò¹öÂÖ¼ü£©Ñ¡ÔñÍ¼ÉÏµã
+%% »ñµÃÊı¾İ
 data = guidata(h_fig);
-fig_point = get(gcbf,'CurrentPoint');   % è·å¾—é¼ æ ‡åœ¨çª—å£åæ ‡ä¸­çš„ä½ç½®
+fig_point = get(gcbf,'CurrentPoint');   % »ñµÃÊó±êÔÚ´°¿Ú×ø±êÖĞµÄÎ»ÖÃ
 pum = getappdata(h_fig,'pum');
-gcaa = gca;     % è·å–å½“å‰åæ ‡è¿›è¡Œæ“ä½œ
-point = get(gcaa,'CurrentPoint');       % è·å¾—é¼ æ ‡åœ¨ç”»å¸ƒåæ ‡ä¸Šçš„ä½ç½®
+gcaa = gca;     % »ñÈ¡µ±Ç°×ø±ê½øĞĞ²Ù×÷
+point = get(gcaa,'CurrentPoint');       % »ñµÃÊó±êÔÚ»­²¼×ø±êÉÏµÄÎ»ÖÃ
 switch (get(gcbf,'SelectionType'))
-    case 'extend'   % Shift+å·¦é”®ï¼ˆæˆ–æ»šè½®é”®ï¼‰
+    case 'extend'   % Shift+×ó¼ü£¨»ò¹öÂÖ¼ü£©
         if (data.NormalGraphExist && (pum.Value==1) ) || (data.ObliqueGraphExist && (pum.Value==2) )
-            % å¦‚æœå¯¹åº”çš„ç•Œé¢ç”»äº†å›¾å†åˆ¤æ–­
+            % Èç¹û»­ÁËÍ¼ÔÙÅĞ¶Ï
             if (fig_point(1)<0.66 && fig_point(1)>0.06)&&(fig_point(2)<0.83 && fig_point(2)>0.08)
-               % æ ¹æ®å›¾æ¡†å¤§å°åˆ¤æ–­é¼ æ ‡æ˜¯å¦åœ¨å›¾æ¡†å†…
-               dist = ((point(1,1)-gcaa.Children(end).XData).^2 + (point(1,2)-gcaa.Children(end).YData).^2).^.5;  % è®¡ç®—ä¸çº¿æ¡çš„è·ç¦»
+               % ¸ù¾İÍ¼¿ò´óĞ¡ÅĞ¶ÏÊó±êÊÇ·ñÔÚÍ¼¿òÄÚ
+               dist = ((point(1,1)-gcaa.Children(end).XData).^2 + (point(1,2)-gcaa.Children(end).YData).^2).^.5;  % ¼ÆËãÓëÏßÌõµÄ¾àÀë
                if min(dist) < 0.05*( min(gcaa.XLim(2)-gcaa.XLim(1), gcaa.YLim(2)-gcaa.YLim(1)) )
-                   % å½“é è¿‘çº¿æ¡ åˆ™
-                   index = find(min(dist) == dist); % æŸ¥æ‰¾æœ€è¿‘ç‚¹åæ ‡
+                   % µ±¿¿½üÏßÌõ Ôò
+                   index = find(min(dist) == dist); % ²éÕÒ×î½üµã×ø±ê
                    data.MarkPoint = [gcaa.Children(end).XData(index),gcaa.Children(end).YData(index)];
-                   guidata(h_fig,data); % å°†è¢«é€‰æ‹©ç‚¹è®°å½•ä¸‹
-                   callback_markpoint(h_fig);   % ç»˜åˆ¶æ ‡è®°ç‚¹
+                   guidata(h_fig,data); % ½«±»Ñ¡Ôñµã¼ÇÂ¼ÏÂ
+                   callback_markpoint(h_fig);   % »æÖÆ±ê¼Çµã
                end
             end
         end
