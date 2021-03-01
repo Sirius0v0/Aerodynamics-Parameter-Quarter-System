@@ -1,45 +1,45 @@
 function callback_ma1(~,~,h_fig)
-% æ›´æ”¹ma1åè®¡ç®—ç›¸å…³å€¼åè¿”å›
+% ¸ü¸Äma1ºó¼ÆËãÏà¹ØÖµºó·µ»Ø
 
-%% è·å–æ§ä»¶å¥æŸ„
-    pum = getappdata(h_fig,'pum');                  % è·å–popupmenuæ§ä»¶æ•°æ®
-    edit_ma1 = getappdata(h_fig,'edit_ma1');    % è·å–Ma1çš„ç›¸å…³value
-    edit_ma2 = getappdata(h_fig,'edit_ma2');    % è·å–Ma2çš„ç›¸å…³value
-    res_beta = getappdata(h_fig,'res_beta');  % è·å–betaçš„ç›¸å…³value
-    res_T2T1 = getappdata(h_fig,'res_T2T1');  % è·å–T2T2çš„ç›¸å…³value
-    res_r2r1 = getappdata(h_fig,'res_r2r1');  % è·å–rho2rho1çš„ç›¸å…³value
-    res_p2p1 = getappdata(h_fig,'res_p2p1');  % è·å–p2p1çš„ç›¸å…³value
+%% »ñÈ¡¿Ø¼ş¾ä±ú
+    pum = getappdata(h_fig,'pum');                  % »ñÈ¡popupmenu¿Ø¼şÊı¾İ
+    edit_ma1 = getappdata(h_fig,'edit_ma1');    % »ñÈ¡Ma1µÄÏà¹Øvalue
+    edit_ma2 = getappdata(h_fig,'edit_ma2');    % »ñÈ¡Ma2µÄÏà¹Øvalue
+    res_beta = getappdata(h_fig,'res_beta');  % »ñÈ¡betaµÄÏà¹Øvalue
+    res_T2T1 = getappdata(h_fig,'res_T2T1');  % »ñÈ¡T2T2µÄÏà¹Øvalue
+    res_r2r1 = getappdata(h_fig,'res_r2r1');  % »ñÈ¡rho2rho1µÄÏà¹Øvalue
+    res_p2p1 = getappdata(h_fig,'res_p2p1');  % »ñÈ¡p2p1µÄÏà¹Øvalue
     
-    m1 = str2double(get(edit_ma1,'string'));    % è·å–m1å†…å®¹
-    % æ£€æŸ¥è¾“å…¥
+    m1 = str2double(get(edit_ma1,'string'));    % »ñÈ¡m1ÄÚÈİ
+    % ¼ì²éÊäÈë
     if isnan(m1)
-        errordlg('é”™è¯¯ï¼è¯·æ£€æŸ¥è¾“å…¥çš„æ˜¯å¦ä¸ºæ•°å€¼ï¼','é”™è¯¯çš„è¾“å…¥','modal')
+        errordlg('´íÎó£¡Çë¼ì²éÊäÈëµÄÊÇ·ñÎªÊıÖµ£¡','´íÎóµÄÊäÈë','modal')
     else
         if (m1 < 1)
-            errordlg('Ma1åº”ä¸ºä¸å°äº1çš„æœ‰ç†æ•°æˆ–ç®—å¼ï¼','æ•°å€¼è­¦å‘Š','modal')
-            m1 = NaN;   % ç½®m1ä¸ºNaNä»¥å–æ¶ˆæ˜¾ç¤º
+            errordlg('Ma1Ó¦Îª²»Ğ¡ÓÚ1µÄÓĞÀíÊı»òËãÊ½£¡','ÊıÖµ¾¯¸æ','modal')
+            m1 = NaN;   % ÖÃm1ÎªNaNÒÔÈ¡ÏûÏÔÊ¾
         end
     end
 
-%% è°ƒç”¨å‡½æ•°è®¡ç®—
-%----------- åˆ¤åˆ«æ­£æ–œæ¿€æ³¢ ------------%
+%% µ÷ÓÃº¯Êı¼ÆËã
+%----------- ÅĞ±ğÕıĞ±¼¤²¨ ------------%
     switch pum.Value
         case 1
-            % å½“é€‰æ‹©1ï¼ˆæ­£æ¿€æ³¢ï¼‰åˆ™è®¡ç®—ç›¸å…³å€¼
+            % µ±Ñ¡Ôñ1£¨Õı¼¤²¨£©Ôò¼ÆËãÏà¹ØÖµ
             m2 = normalm1_m2(m1);
             r2r1 = normalm1_RD(m1);
             p2p1 = normalm1_RP(m1);
             T2T1 = normalm1_RT(m1);
-            beta = 90*m1/m1;      % æ­£æ¿€æ³¢æ¿€æ³¢è§’=90degree, ä¸€ä¹˜ä¸€é™¤ä¸ºäº†ä½¿m1=NaNæ—¶beta=NaN
+            beta = 90*m1/m1;      % Õı¼¤²¨¼¤²¨½Ç=90degree, Ò»³ËÒ»³ıÎªÁËÊ¹m1=NaNÊ±beta=NaN
         case 2
-            % å½“é€‰æ‹©2ï¼ˆæ–œæ¿€æ³¢ï¼‰åˆ™è®¡ç®—ç›¸å…³å€¼
+            % µ±Ñ¡Ôñ2£¨Ğ±¼¤²¨£©Ôò¼ÆËãÏà¹ØÖµ
             
     end
     
-%% è®¾ç½®è¿”å›
+%% ÉèÖÃ·µ»Ø
     set(edit_ma2,'string',string(m2));
     set(res_T2T1,'string',string(T2T1));
     set(res_p2p1,'string',string(p2p1));
     set(res_r2r1,'string',string(r2r1));
-    set(res_beta,'string',strcat(string(beta),'Â°' ));
+    set(res_beta,'string',strcat(string(beta),'¡ã' ));
 end

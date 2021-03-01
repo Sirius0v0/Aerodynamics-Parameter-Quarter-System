@@ -1,17 +1,17 @@
 function callback_keypress(evnt,h_fig)
-% è®¾ç½®é”®ç›˜å“åº”äº‹ä»¶
+% ÉèÖÃ¼üÅÌÏìÓ¦ÊÂ¼ş
 data = guidata(h_fig);
 % disp(evnt.Key)
 
 if (data.NormalGraphExist || data.ObliqueGraphExist)
     switch evnt.Key
-        case 'hyphen'        % æŒ‰é”® -
-            % å°†è¡¨å¾å›¾åƒå¦‚ä½•æ˜¾ç¤ºçš„çŸ©é˜µè¿›è¡Œå·¦ç§» ä»¥å‘å·¦åˆ‡æ¢å›¾ç‰‡
+        case 'hyphen'        % °´¼ü -
+            % ½«±íÕ÷Í¼ÏñÈçºÎÏÔÊ¾µÄ¾ØÕó½øĞĞ×óÒÆ ÒÔÏò×óÇĞ»»Í¼Æ¬
             data.FigIndex = translation(data.FigIndex,'left');
             guidata(h_fig,data);
             callback_switchFig(h_fig);
-        case 'equal'       % æŒ‰é”® =
-            % å°†è¡¨å¾å›¾åƒå¦‚ä½•æ˜¾ç¤ºçš„çŸ©é˜µè¿›è¡Œå³ç§» ä»¥å‘å³åˆ‡æ¢å›¾ç‰‡
+        case 'equal'       % °´¼ü =
+            % ½«±íÕ÷Í¼ÏñÈçºÎÏÔÊ¾µÄ¾ØÕó½øĞĞÓÒÒÆ ÒÔÏòÓÒÇĞ»»Í¼Æ¬
             data.FigIndex = translation(data.FigIndex,'right');
             guidata(h_fig,data);
             callback_switchFig(h_fig);
