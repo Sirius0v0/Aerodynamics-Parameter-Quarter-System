@@ -56,18 +56,44 @@ set(fig_obliq_beta,'GridLineStyle','--')
 % legend(legend_str,'Location','bestoutside');
 
 %% Ma2-Ma1
-% fig_obliq_ma2 = axes('Parent',h_fig,...
-%                         'Units','normalized',...
-%                         'Position',[0.06, 0.08, 0.6, 0.75],...
-%                         'XTick',[],...
-%                         'YTick',[],...
-%                         'Box','On');
-% setappdata(h_fig,'fig_obliq_ma2',fig_obliq_ma2);
-% 
-% % plot(fig_obliq_ma2,1:0.01:30,normalm1_m2(1:0.01:30));
-% title('M2随M1变化规律');
-% xlabel('M1');
-% ylabel('M2');
+fig_obliq_ma2 = axes('Parent',h_fig,...
+                        'Units','normalized',...
+                        'Position',[0.06, 0.08, 0.6, 0.75],...
+                        'XTick',[],...
+                        'YTick',[],...
+                        'Box','On');
+setappdata(h_fig,'fig_obliq_ma2',fig_obliq_ma2);
+
+% 计算数值
+ax_temp = getappdata(h_fig,'ax_temp');
+i = 1;
+for d = [2 8 12 18 24 34]
+    data.Figdata(i).YData = obliquem1_m2(data.Figdata(i).XData,data.Figdata(i).YData,d);
+    guidata(h_fig,data);        % 保存数据
+    i = i + 1;
+end
+
+% % 拼接数据
+% fig_data = [];
+% for i = 1:6
+%     temp_data = [data.Figdata(i).XData;data.Figdata(i).YData];
+%     fig_data = [fig_data,temp_data];
+% end
+
+plot(fig_obliq_ma2,data.Figdata(1).XData,data.Figdata(1).YData,...
+                    data.Figdata(2).XData,data.Figdata(2).YData,...
+                    data.Figdata(3).XData,data.Figdata(3).YData,...
+                    data.Figdata(4).XData,data.Figdata(4).YData,...
+                    data.Figdata(5).XData,data.Figdata(5).YData,...
+                    data.Figdata(6).XData,data.Figdata(6).YData);
+set(fig_obliq_ma2,'YScale', 'log') %x轴取对数坐标
+set(fig_obliq_ma2,'Ytick',1:10)
+title(['Ma_2 -','Ma_1',' Figure']);
+ylabel('Ma_2');
+xlabel('Ma_1');
+grid on;
+set(fig_obliq_ma2,'GridLineStyle','--')
+% legend(legend_str,'Location','bestoutside');
 
 %% RD-Ma1
 % 创建图窗
