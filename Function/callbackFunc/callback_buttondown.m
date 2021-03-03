@@ -35,6 +35,7 @@ switch (get(gcbf,'SelectionType'))
                    data.MarkPoint = [Fin_XData(index),Fin_YData(index)];
                    guidata(h_fig,data); % 将被选择点记录下
                    callback_markpoint(h_fig);   % 绘制标记点
+                   callback_updata(h_fig);
                end
             end
         end
