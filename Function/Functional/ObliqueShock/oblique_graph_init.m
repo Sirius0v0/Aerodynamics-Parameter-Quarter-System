@@ -8,16 +8,22 @@ for d = [2 8 12 18 24 34]
     legend_str{i} = ['\delta =' num2str(d) '°'];
     i = i+1;
 end
+%% 导入图窗句柄
+fig_obliq_beta = getappdata(h_fig,'fig_obliq_beta');
+fig_obliq_ma2 = getappdata(h_fig,'fig_obliq_ma2');
+fig_obliq_r2r1 = getappdata(h_fig,'fig_obliq_r2r1');
+fig_obliq_p2p1 = getappdata(h_fig,'fig_obliq_p2p1');
+fig_obliq_t2t1 = getappdata(h_fig,'fig_obliq_t2t1');
 
 %% beta-Ma1
-% 创建图窗
-fig_obliq_beta = axes('Parent',h_fig,...
-                        'Units','normalized',...
-                        'Position',[0.06, 0.08, 0.6, 0.75],...
-                        'XTick',[],...
-                        'YTick',[],...
-                        'Box','On');
-setappdata(h_fig,'fig_obliq_beta',fig_obliq_beta);
+% % 创建图窗
+% fig_obliq_beta = axes('Parent',h_fig,...
+%                         'Units','normalized',...
+%                         'Position',[0.06, 0.08, 0.6, 0.75],...
+%                         'XTick',[],...
+%                         'YTick',[],...
+%                         'Box','On');
+% setappdata(h_fig,'fig_obliq_beta',fig_obliq_beta);
 
 % 计算数值
 ax_temp = getappdata(h_fig,'ax_temp');
@@ -48,21 +54,22 @@ plot(fig_obliq_beta,data.Figdata(1).XData,data.Figdata(1).YData,...
                     data.Figdata(6).XData,data.Figdata(6).YData);
 set(fig_obliq_beta,'XScale', 'log') %x轴取对数坐标
 set(fig_obliq_beta,'Xtick',1:10)
-title(['\beta -','Ma_1',' Figure']);
-ylabel(['\beta','/(°)']);
-xlabel('Ma_1');
-grid on;
+title(fig_obliq_beta,['\beta -','Ma_1',' Figure']);
+ylabel(fig_obliq_beta,['\beta','/(°)']);
+xlabel(fig_obliq_beta,'Ma_1');
+grid(fig_obliq_beta,'on')
+grid(fig_obliq_beta,'minor')
 set(fig_obliq_beta,'GridLineStyle','--')
 % legend(legend_str,'Location','bestoutside');
 
 %% Ma2-Ma1
-fig_obliq_ma2 = axes('Parent',h_fig,...
-                        'Units','normalized',...
-                        'Position',[0.06, 0.08, 0.6, 0.75],...
-                        'XTick',[],...
-                        'YTick',[],...
-                        'Box','On');
-setappdata(h_fig,'fig_obliq_ma2',fig_obliq_ma2);
+% fig_obliq_ma2 = axes('Parent',h_fig,...
+%                         'Units','normalized',...
+%                         'Position',[0.06, 0.08, 0.6, 0.75],...
+%                         'XTick',[],...
+%                         'YTick',[],...
+%                         'Box','On');
+% setappdata(h_fig,'fig_obliq_ma2',fig_obliq_ma2);
 
 % 计算数值
 ax_temp = getappdata(h_fig,'ax_temp');
@@ -86,24 +93,25 @@ plot(fig_obliq_ma2,data.Figdata(1).XData,data.Figdata(1).YData,...
                     data.Figdata(4).XData,data.Figdata(4).YData,...
                     data.Figdata(5).XData,data.Figdata(5).YData,...
                     data.Figdata(6).XData,data.Figdata(6).YData);
-set(fig_obliq_ma2,'YScale', 'log') %x轴取对数坐标
+% set(fig_obliq_ma2,'YScale', 'log') %x轴取对数坐标
 set(fig_obliq_ma2,'Ytick',1:10)
-title(['Ma_2 -','Ma_1',' Figure']);
-ylabel('Ma_2');
-xlabel('Ma_1');
-grid on;
+title(fig_obliq_ma2,['Ma_2 -','Ma_1',' Figure']);
+ylabel(fig_obliq_ma2,'Ma_2');
+xlabel(fig_obliq_ma2,'Ma_1');
+grid(fig_obliq_ma2,'on')
+grid(fig_obliq_ma2,'minor')
 set(fig_obliq_ma2,'GridLineStyle','--')
 % legend(legend_str,'Location','bestoutside');
 
 %% RD-Ma1
 % 创建图窗
-fig_obliq_r2r1 = axes('Parent',h_fig,...
-                        'Units','normalized',...
-                        'Position',[0.06, 0.08, 0.6, 0.75],...
-                        'XTick',[],...
-                        'YTick',[],...
-                        'Box','On');
-setappdata(h_fig,'fig_obliq_r2r1',fig_obliq_r2r1);
+% fig_obliq_r2r1 = axes('Parent',h_fig,...
+%                         'Units','normalized',...
+%                         'Position',[0.06, 0.08, 0.6, 0.75],...
+%                         'XTick',[],...
+%                         'YTick',[],...
+%                         'Box','On');
+% setappdata(h_fig,'fig_obliq_r2r1',fig_obliq_r2r1);
 
 % 计算数值
 i = 1;
@@ -131,24 +139,25 @@ plot(fig_obliq_r2r1,data.Figdata(1).XData,data.Figdata(1).YData,...
                     data.Figdata(4).XData,data.Figdata(4).YData,...
                     data.Figdata(5).XData,data.Figdata(5).YData,...
                     data.Figdata(6).XData,data.Figdata(6).YData);
-grid on
+grid(fig_obliq_r2r1,'on')
+grid(fig_obliq_r2r1,'minor')
 set(fig_obliq_r2r1,'GridLineStyle','--')
 set(fig_obliq_r2r1,'XScale', 'log') %x轴取对数坐标
 set(fig_obliq_r2r1,'Xtick',1:10)
-title(['\rho_2','/','\rho_1','-','Ma_1 Figure'])
-xlabel('Ma_1')
-ylabel(['\rho_2','/','\rho_1'])
+title(fig_obliq_r2r1,['\rho_2','/','\rho_1','-','Ma_1 Figure'])
+xlabel(fig_obliq_r2r1,'Ma_1')
+ylabel(fig_obliq_r2r1,['\rho_2','/','\rho_1'])
 % legend(legend_str,'Location','bestoutside');
 
 %% RP-Ma1
-% 创建图窗
-fig_obliq_p2p1 = axes('Parent',h_fig,...
-                        'Units','normalized',...
-                        'Position',[0.06, 0.08, 0.6, 0.75],...
-                        'XTick',[],...
-                        'YTick',[],...
-                        'Box','On');
-setappdata(h_fig,'fig_obliq_p2p1',fig_obliq_p2p1);
+% % 创建图窗
+% fig_obliq_p2p1 = axes('Parent',h_fig,...
+%                         'Units','normalized',...
+%                         'Position',[0.06, 0.08, 0.6, 0.75],...
+%                         'XTick',[],...
+%                         'YTick',[],...
+%                         'Box','On');
+% setappdata(h_fig,'fig_obliq_p2p1',fig_obliq_p2p1);
 
 % 计算数值
 i = 1;
@@ -176,10 +185,11 @@ plot(fig_obliq_p2p1,data.Figdata(1).XData,data.Figdata(1).YData,...
                     data.Figdata(4).XData,data.Figdata(4).YData,...
                     data.Figdata(5).XData,data.Figdata(5).YData,...
                     data.Figdata(6).XData,data.Figdata(6).YData);
-grid on
-title(['p_2','/','p_1','-','Ma_1 Figure'])
-xlabel('Ma_1')
-ylabel(['p_2','/','p_1'])
+grid(fig_obliq_p2p1,'on')
+grid(fig_obliq_p2p1,'minor')
+title(fig_obliq_p2p1,['p_2','/','p_1','-','Ma_1 Figure'])
+xlabel(fig_obliq_p2p1,'Ma_1')
+ylabel(fig_obliq_p2p1,['p_2','/','p_1'])
 set(fig_obliq_p2p1,'GridLineStyle','--')
 set(fig_obliq_p2p1,'YScale', 'log') %y轴取对数坐标
 set(fig_obliq_p2p1,'Ytick',1:10)
@@ -187,21 +197,23 @@ set(fig_obliq_p2p1,'Ytick',1:10)
 
 %% RT-Ma1
 % 创建图窗
-fig_obliq_t2t1 = axes('Parent',h_fig,...
-                        'Units','normalized',...
-                        'Position',[0.06, 0.08, 0.6, 0.75],...
-                        'XTick',[],...
-                        'YTick',[],...
-                        'Box','On');
-setappdata(h_fig,'fig_obliq_t2t1',fig_obliq_t2t1);
+% fig_obliq_t2t1 = axes('Parent',h_fig,...
+%                         'Units','normalized',...
+%                         'Position',[0.06, 0.08, 0.6, 0.75],...
+%                         'XTick',[],...
+%                         'YTick',[],...
+%                         'Box','On');
+% setappdata(h_fig,'fig_obliq_t2t1',fig_obliq_t2t1);
 
+i = 1;
 for d=[2 8 12 18 24 34]
-    temp_h = fimplicit(ax_temp,func_p2p1(d),[1,10],'LineWidth',0.8,'Visible',0);       % 内置函数画图
+    temp_h = fimplicit(ax_temp,func_beta(d),[1,10,5,100],'LineWidth',1,'Visible',0);    % 内置函数画图beta,以此计算T2T1
     set(ax_temp,'Visible',0);
     data.Figdata(i).XData = [];
     data.Figdata(i).YData = [];     % 先清空再存值
     data.Figdata(i).XData = temp_h.XData;
-    data.Figdata(i).YData = temp_h.YData;
+    data.Figdata(i).YData = temp_h.YData;   
+    data.Figdata(i).YData = obliquem1_RT(data.Figdata(i).XData,data.Figdata(i).YData);
     guidata(h_fig);
     i = i + 1;
 end
@@ -219,13 +231,15 @@ plot(fig_obliq_t2t1,data.Figdata(1).XData,data.Figdata(1).YData,...
                     data.Figdata(4).XData,data.Figdata(4).YData,...
                     data.Figdata(5).XData,data.Figdata(5).YData,...
                     data.Figdata(6).XData,data.Figdata(6).YData);
-grid on
+grid(fig_obliq_t2t1,'on')
+grid(fig_obliq_t2t1,'minor')
 set(fig_obliq_t2t1,'GridLineStyle','--')
-set(fig_obliq_t2t1,'XScale', 'log') %x轴取对数坐标
+set(fig_obliq_t2t1,'YScale', 'log') %y轴取对数坐标
 set(fig_obliq_t2t1,'Xtick',1:10)
-title(['T_2','/','T_1','-','Ma_1 Figure'])
-xlabel('Ma_1')
-ylabel(['T_2','/','T_1'])
+set(fig_obliq_t2t1,'Ytick',[1:10,13,17])
+title(fig_obliq_t2t1,['T_2','/','T_1','-','Ma_1 Figure'])
+xlabel(fig_obliq_t2t1,'Ma_1')
+ylabel(fig_obliq_t2t1,['T_2','/','T_1'])
 % legend(legend_str,'Location','bestoutside');
 
 %% 初始化可见性

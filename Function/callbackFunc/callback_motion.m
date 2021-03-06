@@ -3,12 +3,12 @@ function callback_motion(~,~,h_fig)
 %% 获取数据
 data = guidata(h_fig);
 pum = getappdata(h_fig,'pum');
-gcaa = gca;     % 获取当前图窗句柄
+gcaa = findCurrentGca(h_fig);     % 获取当前图窗句柄
 point = get(gcaa,'CurrentPoint');   % 获取鼠标当前坐标
 fig_point = get(gcbf,'CurrentPoint');   % 获得鼠标在窗口坐标中的位置
 
 %% 设置鼠标形状
-if (data.NormalGraphExist && (pum.Value==1) ) || (data.ObliqueGraphExist && (pum.Value==2) )
+if ((data.NormalGraphExist||data.isPreObliFig) && (pum.Value==1) ) || ((data.ObliqueGraphExist || data.isPreObliFig) && (pum.Value==2) )
     % 如果画了图则启用
     if (fig_point(1)<0.66 && fig_point(1)>0.06)&&(fig_point(2)<0.83 && fig_point(2)>0.08)
                % 根据图框大小判断鼠标是否在图框内

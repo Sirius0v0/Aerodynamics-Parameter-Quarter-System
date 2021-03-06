@@ -1,4 +1,4 @@
-function [y0_s,y0_la] = chazhi(x0,xi,yi)
+function y_result = chazhi(x0,xi,yi)
 %差商表，取3个数,点运算（x0也为向量）
 %给m插值出theta时，y0_s是较小解，y0_la是较大解
 %xi可以单调，可以非单调（可以先增后减，可以先减后增）；yi必然单调（单增或单减均可）
@@ -177,6 +177,12 @@ else
 end
 
 end%for循环的
+
+if y0_s == y0_la
+    y_result = y0_s;
+else
+    y_result = [y0_s',y0_la'];
+end
    
 end
 
