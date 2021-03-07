@@ -74,6 +74,8 @@ function callback_ma2(~,~,h_fig)
             elseif nan_num == 2 % 如果输入两个参数则开始计算
                 switch nan_index
                     case 1  % 求解beta,theta 已知 m2, m1
+                        warndlg('目前尚不支持Ma1和Ma2查值！');
+                        return;
                         [m1 , ~, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma1','ma2',[m1, m2]); 
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
