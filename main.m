@@ -28,7 +28,8 @@ setappdata(h_fig,'ax_text',ax_text);
 %       - 退出
 % + 编辑
 %       - 保存图片
-%       - 导入数据
+%       - 导出数据
+%       - 批量计算
 % + 帮助
 %       - 帮助
 %       - 关于
@@ -44,6 +45,8 @@ h_edit_submenu1 = uimenu(h_menu_edit,'label','保存图片',...
                     'callback',{@callback_saveFig,h_fig});
 h_edit_submenu2 = uimenu(h_menu_edit,'label','导出数据',...
                     'callback',{@callback_saveData,h_fig});
+h_edit_submenu3 = uimenu(h_menu_edit,'label','批量计算',...
+                    'callback',{@callback_calData,h_fig});
 
 % 帮助
 h_menu_help = uimenu(h_fig,'label','帮助');
