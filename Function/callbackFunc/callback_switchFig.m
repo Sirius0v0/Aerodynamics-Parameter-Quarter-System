@@ -1,6 +1,10 @@
-function callback_switchFig(h_fig)
+function callback_switchFig(h_fig,isPreObliFig)
 % 切换已绘制的图
 % 按照 (beta) --> ma2 --> r2r1 --> p2p1 --> T2T1 --> (beta) --> ma2的循环顺序
+
+if nargin == 1
+    isPreObliFig = 0;
+end
 
 %% 获取控件句柄
     fig_ma2 = getappdata(h_fig,'fig_ma2');
@@ -40,14 +44,14 @@ function callback_switchFig(h_fig)
 %             % 设置T2T1-Ma1可见性
 %             set(fig_t2t1,'Visible',index(4))
 %             set(fig_t2t1.Children,'Visible',index(4))
-              if data.ObliqueGraphExist
+              if data.ObliqueGraphExist || data.isPreObliFig
                   % 如果存在斜激波的图 则全部隐藏
                   set(eval(data.FigHandleName{find(obli_index == 1)+4}), 'visible',0 );     % 隐藏axis
                   set(eval(data.FigHandleName{find(obli_index == 1)+4}).Children, 'visible',0 );    % 隐藏线条
                   set(eval(data.FigHandleName{find(obli_index == 1)+4}).Legend, 'visible',0 );      % 隐藏图例
               end
               
-              if data.NormalGraphExist
+              if data.NormalGraphExist || data.isPreObliFig
                   for jj = 1:4
                       % 替代上述注释内容
                       set(eval(data.FigHandleName{jj}), 'visible',nor_index(jj) );
@@ -74,13 +78,13 @@ function callback_switchFig(h_fig)
 %             set(fig_obliq_t2t1,'Visible',index(4))
 %             set(fig_obliq_t2t1.Children,'Visible',index(4))
 
-              if data.NormalGraphExist
+              if data.NormalGraphExist || isPreObliFig
                   % 如果存在正激波的图 则全部隐藏
                   set(eval(data.FigHandleName{nor_index == 1}), 'visible',0 );
                   set(eval(data.FigHandleName{nor_index == 1}).Children, 'visible',0 );
               end
               
-              if data.ObliqueGraphExist
+              if data.ObliqueGraphExist || isPreObliFig
                   for jj = 1:5
                       % 替代上述注释内容
                       set(eval(data.FigHandleName{jj+4}), 'visible',obli_index(jj) );

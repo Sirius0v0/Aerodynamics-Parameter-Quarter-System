@@ -8,7 +8,7 @@ gcaa = gca;     % 获取当前坐标进行操作
 point = get(gcaa,'CurrentPoint');       % 获得鼠标在画布坐标上的位置
 switch (get(gcbf,'SelectionType'))
     case 'extend'   % Shift+左键（或滚轮键）
-        if (data.NormalGraphExist && (pum.Value==1) ) || (data.ObliqueGraphExist && (pum.Value==2) )
+        if ((data.NormalGraphExist||data.isPreObliFig) && (pum.Value==1) ) || ((data.ObliqueGraphExist||data.isPreObliFig) && (pum.Value==2) )
             % 如果画了图再判断
             if (fig_point(1)<0.66 && fig_point(1)>0.06)&&(fig_point(2)<0.83 && fig_point(2)>0.08)
                % 根据图框大小判断鼠标是否在图框内
@@ -35,6 +35,7 @@ switch (get(gcbf,'SelectionType'))
                    data.MarkPoint = [Fin_XData(index),Fin_YData(index)];
                    guidata(h_fig,data); % 将被选择点记录下
                    callback_markpoint(h_fig);   % 绘制标记点
+                   callback_updata(h_fig);
                end
             end
         end
