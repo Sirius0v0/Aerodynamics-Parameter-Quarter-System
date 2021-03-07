@@ -1,7 +1,13 @@
-function [ma1, ma2, beta, r2r1, p2p1, t2t1, theta] = getObliValue(h_fig,args1, args2)
+function [ma1, ma2, beta, r2r1, p2p1, t2t1, theta] = getObliValue(h_fig,args1, args2, value, isOnlyGetValue)
 % 斜激波相关参数求解
 % 知二求四 共六种情况
 % 编程时注意顺序问题
+
+% 判断是否只是为了获值
+if nargin == 4
+    isOnlyGetValue = 0;
+end
+
 
 %% 获取图窗句柄
 fig_obliq_beta = getappdata(h_fig,'fig_obliq_beta');
@@ -21,28 +27,28 @@ data = guidata(h_fig);
 % 情况编码
 if strcmp(args1, 'ma1') && strcmp(args2,'ma2')
     case_index = 1;
-    ma1 = str2double(get(edit_ma1,'string'));
-    ma2 = str2double(get(edit_ma2,'string'));
+    ma1 = value(1);
+    ma2 = value(2);
 elseif strcmp(args1, 'ma1') && strcmp(args2,'beta')
     case_index = 2;
-    ma1 = str2double(get(edit_ma1,'string'));
-    beta = str2double(get(edit_beta,'string'));
+    ma1 = value(1);
+    beta = value(2);
 elseif strcmp(args1, 'ma1') && strcmp(args2,'theta')
     case_index = 3;
-    ma1 = str2double(get(edit_ma1,'string'));
-    theta = str2double(get(edit_theta,'string'));
+    ma1 = value(1);
+    theta = value(2);
 elseif strcmp(args1, 'ma2') && strcmp(args2,'beta')
     case_index = 4;
-    ma2 = str2double(get(edit_ma2,'string'));
-    beta = str2double(get(edit_beta,'string'));
+    ma2 = value(1);
+    beta = value(2);
 elseif strcmp(args1, 'ma2') && strcmp(args2,'theta')
     case_index = 5;
-    ma2 = str2double(get(edit_ma2,'string'));
-    theta = str2double(get(edit_theta,'string'));
+    ma2 = value(1);
+    theta = value(2);
 elseif strcmp(args1, 'beta') && strcmp(args2,'theta')
     case_index = 6;
-    beta = str2double(get(edit_beta,'string'));
-    theta = str2double(get(edit_theta,'string'));
+    beta = value(1);
+    theta = value(2);
 end
 
 % 内置绘图数据保存至data.Figdata
@@ -57,6 +63,9 @@ end
 %           - T2T1
 %           - theta
     
+
+if isOnlyGetValue == 0
+
 switch case_index
     case 1  % 知ma1 ma2
         % 内置函数画
@@ -394,6 +403,91 @@ switch case_index
         p2p1 = obliquem1_RP(ma1,beta);
         t2t1 = obliquem1_RT(ma1,beta);
         
+end
+
+elseif isOnlyGetValue == 1
+    
+switch case_index
+    case 1  % 知ma1 ma2
+        % 内置函数画
+        
+         % 求值（用..）
+    case 2  % 知ma1 beta
+        % 内置函数画beta-theta   求解theta
+        fimplicit(ax_temp,func_beta_theta(ma1,'ma1'),[0,90,0,90],'LineWidth',1,'Visible','off');
+        set(ax_temp,'Visible',0);
+        theta = chazhi(beta,ax_temp.Children.YData,ax_temp.Children.XData);
+        
+        % 求值（用Ma1）
+        ma2 = obliquem1_m2(ma1,beta,theta);
+        r2r1 = obliquem1_RD(ma1,beta);
+        p2p1 = obliquem1_RP(ma1,beta);
+        t2t1 = obliquem1_RT(ma1,beta);
+        
+    case 3  % 知theta ma1
+        % 内置函数画beta
+        fimplicit(ax_temp,func_beta(theta),[1,10,5,100],'LineWidth',1);
+        set(ax_temp,'Visible',0);
+        
+        % 求值（用Ma1）
+        beta = chazhi(ma1,ax_temp.Children.XData,ax_temp.Children.YData);
+        ma2 = obliquem1_m2(ma1,beta,theta);
+        r2r1 = obliquem1_RD(ma1,beta);
+        p2p1 = obliquem1_RP(ma1,beta);
+        t2t1 = obliquem1_RT(ma1,beta);
+        
+    case 4  % 知ma2 beta
+        % 内置函数画beta-theta   求解theta
+        fimplicit(ax_temp,func_beta_theta(ma2,'ma2'),[2,90,0,90],'LineWidth',1,'Visible','off');
+        set(ax_temp,'Visible',0);
+        theta = chazhi(beta,ax_temp.Children.YData,ax_temp.Children.XData);
+        theta = filterData(theta,[0 45.5]);
+        
+        % 内置函数画beta
+        fimplicit(ax_temp,func_beta(theta),[1,10,5,100],'LineWidth',1);
+        set(ax_temp,'Visible',0);
+       
+        % 求值（用Ma1）
+            % 创建ma2-ma1序列插值
+            temp_ma2 = obliquem1_m2(ax_temp.Children.XData,ax_temp.Children.YData,theta);
+        ma1 = chazhi(ma2,temp_ma2,ax_temp.Children.XData);
+        r2r1 = obliquem1_RD(ma1,beta);
+        p2p1 = obliquem1_RP(ma1,beta);
+        t2t1 = obliquem1_RT(ma1,beta);
+        
+    case 5  % 知ma2 theta
+        % 内置函数画beta
+        fimplicit(ax_temp,func_beta(theta),[1,10,5,100],'LineWidth',1);
+        set(ax_temp,'Visible',0);
+        
+        % 求值（用Ma2）
+            % 创建ma2-ma1序列插值
+            temp_ma2 = obliquem1_m2(ax_temp.Children.XData,ax_temp.Children.YData,theta);
+        ma1 = chazhi(ma2,temp_ma2,ax_temp.Children.XData);
+        beta = chazhi(ma1,ax_temp.Children.XData,ax_temp.Children.YData);
+        if ma2 >= 1     % 通过筛选强弱解筛选beta
+            beta = min(beta);
+        else
+            beta = max(beta);
+        end
+        r2r1 = obliquem1_RD(ma1,beta);
+        p2p1 = obliquem1_RP(ma1,beta);
+        t2t1 = obliquem1_RT(ma1,beta);
+        
+    case 6  % 知 beta theta
+        % 内置函数画beta
+        fimplicit(ax_temp,func_beta(theta),[1,10,5,100],'LineWidth',1);
+        set(ax_temp,'Visible',0);
+        
+        % 求值（用beta）
+        ma1 = chazhi(beta,ax_temp.Children.YData,ax_temp.Children.XData);
+        ma2 = obliquem1_m2(ma1,beta,theta);
+        r2r1 = obliquem1_RD(ma1,beta);
+        p2p1 = obliquem1_RP(ma1,beta);
+        t2t1 = obliquem1_RT(ma1,beta);
+        
+end
+    
 end
 
 end

@@ -42,8 +42,8 @@ h_file_submenu1 = uimenu(h_menu_file,'label','退出',...
 h_menu_edit = uimenu(h_fig,'label','编辑');
 h_edit_submenu1 = uimenu(h_menu_edit,'label','保存图片',...
                     'callback',{@callback_saveFig,h_fig});
-h_edit_submenu2 = uimenu(h_menu_edit,'label','导入数据',...
-                    'callback','');
+h_edit_submenu2 = uimenu(h_menu_edit,'label','导出数据',...
+                    'callback',{@callback_saveData,h_fig});
 
 % 帮助
 h_menu_help = uimenu(h_fig,'label','帮助');
@@ -94,6 +94,8 @@ data.NormalGraphExist = 0;      % 记录尚未画图
 data.ObliqueGraphExist = 0;     % 记录尚未画图
 data.isPreObliFig = 0;     % 记录查值画图
 data.MarkPoint = [0,0];         % 记录被选中标记点坐标
+data.NormRecordData = [];       % 正激波 ma1 ma2 beta r2r1 p2p1 t2t1
+data.ObliRecordData = [];       % 斜激波 ma1 ma2 beta r2r1 p2p1 t2t1 theta
 guidata(h_fig,data);
 
 %% 创建输入栏（Ma1,Ma2,theta<根据正负激波显示或隐藏>）

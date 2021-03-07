@@ -46,43 +46,48 @@ switch index_ax
         t2t1 = normalm1_RT(ma1);
         theta = NaN;
         data.MarkedData = [ma1;ma2;beta;r2r1;p2p1;t2t1;theta];
-    case {5,6,7,8,9}
+    case 5  % beta
+        [ma1 , ma2, beta, r2r1, p2p1, t2t1, theta] = getObliValue(h_fig,'ma1','beta',[MarkPoint(1),MarkPoint(2)],1); 
+        data.MarkedData = [ma1;ma2;beta;r2r1;p2p1;t2t1;theta];
+    case {6,7,8,9}  % ma2 r2r1 p2p1 t2t1
+        warndlg('目前尚不支持在此图中选点查值！');
+%     case {5,6,7,8,9}    % beta ma2 r2r1 p2p1 t2t1
         
-        % 判断theta的选点取值
-        theta = -1;
-        for i = 0:5
-            xdata = gcaa.Children(end-i).XData;
-            ydata = gcaa.Children(end-i).YData;
-            ind = find((xdata==MarkPoint(1))==1);
-            for item = ind
-                if ydata(item)==MarkPoint(2)
-                    theta = theta_list(end-i);
-                    index_line = i;
-                    index_point = item;
-                    break;
-                end
-            end
-            if theta ~= -1
-                break;
-            end
-        end
+%         % 判断theta的选点取值
+%         theta = -1;
+%         for i = 0:5
+%             xdata = gcaa.Children(end-i).XData;
+%             ydata = gcaa.Children(end-i).YData;
+%             ind = find((xdata==MarkPoint(1))==1);
+%             for item = ind
+%                 if ydata(item)==MarkPoint(2)
+%                     theta = theta_list(end-i);
+%                     index_line = i;
+%                     index_point = item;
+%                     break;
+%                 end
+%             end
+%             if theta ~= -1
+%                 break;
+%             end
+%         end
 %         disp(theta)
         
-        ma1 = MarkPoint(1);
-        ma2 = fig_obliq_ma2.Children(end-index_line).YData(index_point);
-        beta = fig_obliq_beta.Children(end-index_line).YData(index_point);
-        r2r1 = fig_obliq_r2r1.Children(end-index_line).YData(index_point);
-        p2p1 = fig_obliq_p2p1.Children(end-index_line).YData(index_point);
-        t2t1 = fig_obliq_t2t1.Children(end-index_line).YData(index_point);
-        data.MarkedData = [ma1;ma2;beta;r2r1;p2p1;t2t1;theta];
+%         ma1 = MarkPoint(1);
+%         ma2 = fig_obliq_ma2.Children(end-index_line).YData(index_point);
+%         beta = fig_obliq_beta.Children(end-index_line).YData(index_point);
+%         r2r1 = fig_obliq_r2r1.Children(end-index_line).YData(index_point);
+%         p2p1 = fig_obliq_p2p1.Children(end-index_line).YData(index_point);
+%         t2t1 = fig_obliq_t2t1.Children(end-index_line).YData(index_point);
+%         data.MarkedData = [ma1;ma2;beta;r2r1;p2p1;t2t1;theta];
 end
 guidata(h_fig,data);        % 保存数据
 
 %% 显示到界面
     set(edit_ma1,'string',string(data.MarkedData(1,end)));
     set(edit_ma2,'string',string(data.MarkedData(2,end)));
-    set(res_beta,'string',strcat(string(data.MarkedData(3,end)),'°' ));
-    set(edit_beta,'string',strcat(string(data.MarkedData(3,end)),'°' ));
+    set(res_beta,'string',string(data.MarkedData(3,end)));
+    set(edit_beta,'string',string(data.MarkedData(3,end)));
     set(res_r2r1,'string',string(data.MarkedData(4,end)));
     set(res_p2p1,'string',string(data.MarkedData(5,end)));
     set(res_T2T1,'string',string(data.MarkedData(6,end)));

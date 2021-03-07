@@ -18,14 +18,18 @@ function callback_theta(~,~,h_fig)
     beta = str2double(get(edit_beta,'string'));
     theta = str2double(get(edit_theta,'string'));
     % 检查输入
-    if isnan(theta)
-        errordlg('错误！请检查输入的是否为数值！','错误的输入','modal')
+    if strcmp(theta,'')
+        return
     else
-        if (theta < 0.0001 || theta > 45.5)
-            errordlg('theta应在区间[0,45,5]内的有理数！','数值警告','modal')
-            theta = NaN;   % 置m1为NaN以取消显示
-            callback_btn3([],[],h_fig);
-            return
+        if isnan(theta)
+            errordlg('错误！请检查输入的是否为数值！','错误的输入','modal')
+        else
+            if (theta < 0.0001 || theta > 45.5)
+                errordlg('theta应在区间[0,45,5]内的有理数！','数值警告','modal')
+                theta = NaN;   % 置m1为NaN以取消显示
+                callback_btn3([],[],h_fig);
+                return
+            end
         end
     end
 
@@ -43,15 +47,15 @@ function callback_theta(~,~,h_fig)
             elseif nan_num == 2 % 如果输入两个参数则开始计算
                 switch nan_index
                     case 1  % 求解beta,m2 已知 m1, theta
-                        [m1 , m2, beta, r2r1, p2p1, T2T1, ~] = getObliValue(h_fig,'ma1','theta'); 
+                        [m1 , m2, beta, r2r1, p2p1, T2T1, ~] = getObliValue(h_fig,'ma1','theta',[m1, theta]); 
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
                     case 2  % 求解m1, beta 已知 m2, theta
-                        [m1 , m2, beta, r2r1, p2p1, T2T1, ~] = getObliValue(h_fig,'ma2','theta'); 
+                        [m1 , m2, beta, r2r1, p2p1, T2T1, ~] = getObliValue(h_fig,'ma2','theta',[m2, theta]); 
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
                     case 3  % 求解m1, m2 已知 beta, theta
-                        [m1 , m2, beta, r2r1, p2p1, T2T1, ~] = getObliValue(h_fig,'beta','theta'); 
+                        [m1 , m2, beta, r2r1, p2p1, T2T1, ~] = getObliValue(h_fig,'beta','theta',[beta, theta]); 
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
                 end
@@ -63,7 +67,7 @@ function callback_theta(~,~,h_fig)
             % 设置返回
             set(edit_ma1,'string',string(m1));
             set(edit_ma2,'string',string(m2));
-            set(edit_beta,'string',strcat( string(beta),'°'));
+            set(edit_beta,'string',string(beta));
             set(res_T2T1,'string',string(T2T1));
             set(res_p2p1,'string',string(p2p1));
             set(res_r2r1,'string',string(r2r1));
