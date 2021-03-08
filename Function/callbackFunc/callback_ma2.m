@@ -4,6 +4,7 @@ function callback_ma2(~,~,h_fig)
 %% 获取控件句柄
     pum = getappdata(h_fig,'pum');              % 获取popupmenu控件数据
     data = guidata(h_fig);
+    bg = getappdata(h_fig,'bg');
     edit_ma1 = getappdata(h_fig,'edit_ma1');    % 获取Ma1的相关value
     edit_ma2 = getappdata(h_fig,'edit_ma2');    % 获取Ma2的相关value
     res_beta = getappdata(h_fig,'res_beta');  % 获取beta的相关value
@@ -80,10 +81,14 @@ function callback_ma2(~,~,h_fig)
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
                     case 2  % 求解m1, theta 已知 m2, beta
+                        % 关闭强弱解开关
+                        set(bg,'Visible','off');
                         [m1 , ~, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma2','beta',[m2, beta]); 
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
                     case 3  % 求解m1, beta 已知 m2, theta
+                        % 关闭强弱解开关
+                        set(bg,'Visible','off');
                         [m1 , ~, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma2','theta',[m2, theta]); 
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);

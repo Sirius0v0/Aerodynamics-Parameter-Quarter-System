@@ -1,6 +1,9 @@
 function callback_calData(~,~,h_fig)
 % 创建新图窗
-[name,path] = uigetfile('*.xlsx','请选择文件');
+[name,path,index] = uigetfile('*.xlsx','请选择文件');
+if index == 0
+    return;
+end
 filename = fullfile(path,name);
 % 读取table
 T_Norm = readtable(filename,'Sheet','Normal_Shock_Data');
@@ -63,8 +66,6 @@ if ~isObliEmpty
         elseif (input_index_Obli(1)==1) && (input_index_Obli(2)==3)
             code = 'ma1beta';
         elseif (input_index_Obli(1)==1) && (input_index_Obli(2)==7)
-            warndlg('目前尚不支持Ma1和theta查值！');
-            return;
             code = 'ma1theta';
         elseif (input_index_Obli(1)==2) && (input_index_Obli(2)==3)
             code = 'ma2beta';
@@ -103,31 +104,37 @@ end
 
 % 斜激波
 Obli = [];
+Obli_ruo = [];
+Obli_qiang = [];
 if ~isObliEmpty
    switch code
        case 'ma1ma2'
            
        case 'ma1beta'
            for item = 1:height(T_Obli)
-               [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma1','beta',[T_Obli{item,1}, T_Obli{item,3}]); 
+               [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma1','beta',[T_Obli{item,1}, T_Obli{item,3}],1); 
                Obli = [Obli;m1 , m2, beta, r2r1, p2p1, T2T1, theta];
            end
            
        case 'ma1theta'
-           
+           for item = 1:height(T_Obli)
+               [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma1','theta',[T_Obli{item,1}, T_Obli{item,7}],1); 
+               Obli_ruo = [Obli_ruo;m1 , m2(1), beta(1), r2r1(1), p2p1(1), T2T1(1), theta];
+               Obli_qiang = [Obli_qiang;m1 , m2(2), beta(2), r2r1(2), p2p1(2), T2T1(2), theta];
+           end
        case 'ma2beta'
            for item = 1:height(T_Obli)
-               [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma2','beta',[T_Obli{item,2}, T_Obli{item,3}]); 
+               [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma2','beta',[T_Obli{item,2}, T_Obli{item,3}],1); 
                Obli = [Obli;m1 , m2, beta, r2r1, p2p1, T2T1, theta];
            end
        case 'ma2theta'
            for item = 1:height(T_Obli)
-               [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma2','theta',[T_Obli{item,2}, T_Obli{item,7}]); 
+               [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma2','theta',[T_Obli{item,2}, T_Obli{item,7}],1); 
                Obli = [Obli;m1 , m2, beta, r2r1, p2p1, T2T1, theta];
            end
        case 'betatheta'
            for item = 1:height(T_Obli)
-               [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'beta','theta',[T_Obli{item,3}, T_Obli{item,7}]); 
+               [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'beta','theta',[T_Obli{item,3}, T_Obli{item,7}],1); 
                Obli = [Obli;m1 , m2, beta, r2r1, p2p1, T2T1, theta];
            end
    end
@@ -139,8 +146,14 @@ answer = questdlg('已计算完毕！保存请选择路径', ...
 	'选择路径','取消','选择路径');
 switch answer
     case '选择路径'
-        if writefile(Norm,Obli)
-            msgbox('保存成功！','Success','modal');
+        if strcmp(code,'ma1theta')
+            if writefile(Norm,Obli_ruo,Obli_qiang)
+                msgbox('保存成功！','Success','modal');
+            end
+        else
+            if writefile(Norm,Obli)
+                msgbox('保存成功！','Success','modal');
+            end
         end
     case '取消'
         return;

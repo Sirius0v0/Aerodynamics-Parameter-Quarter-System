@@ -78,13 +78,13 @@ end
 %             set(fig_obliq_t2t1,'Visible',index(4))
 %             set(fig_obliq_t2t1.Children,'Visible',index(4))
 
-              if data.NormalGraphExist || isPreObliFig
+              if data.NormalGraphExist || isPreObliFig || data.isPreObliFig
                   % 如果存在正激波的图 则全部隐藏
                   set(eval(data.FigHandleName{nor_index == 1}), 'visible',0 );
                   set(eval(data.FigHandleName{nor_index == 1}).Children, 'visible',0 );
               end
               
-              if data.ObliqueGraphExist || isPreObliFig
+              if data.ObliqueGraphExist || isPreObliFig || data.isPreObliFig
                   for jj = 1:5
                       % 替代上述注释内容
                       set(eval(data.FigHandleName{jj+4}), 'visible',obli_index(jj) );

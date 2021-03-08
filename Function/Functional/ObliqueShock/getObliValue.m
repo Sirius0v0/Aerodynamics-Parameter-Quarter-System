@@ -142,9 +142,10 @@ switch case_index
         
     case 3  % 知theta ma1
         % 内置函数画beta
-        fimplicit(fig_obliq_beta,func_beta(theta),[1,10,5,100],'LineWidth',1);
+        fimplicit(fig_obliq_beta,func_beta(theta),[1,200,5,100],'LineWidth',1);
         set(fig_obliq_beta,'XScale', 'log') %x轴取对数坐标
         set(fig_obliq_beta,'Xtick',1:10)
+        axis(fig_obliq_beta,[1 10 0 90])
         title(fig_obliq_beta,['\beta -','Ma_1',' Figure']);
         ylabel(fig_obliq_beta,['\beta','/(°)']);
         xlabel(fig_obliq_beta,'Ma_1');
@@ -274,9 +275,10 @@ switch case_index
         
     case 5  % 知ma2 theta
         % 内置函数画beta
-        fimplicit(fig_obliq_beta,func_beta(theta),[1,10,5,100],'LineWidth',1);
+        fimplicit(fig_obliq_beta,func_beta(theta),[1,200,5,100],'LineWidth',1);
         set(fig_obliq_beta,'XScale', 'log') %x轴取对数坐标
         set(fig_obliq_beta,'Xtick',1:10)
+        axis(fig_obliq_beta,[1 10 0 90])
         title(fig_obliq_beta,['\beta -','Ma_1',' Figure']);
         ylabel(fig_obliq_beta,['\beta','/(°)']);
         xlabel(fig_obliq_beta,'Ma_1');
@@ -343,9 +345,10 @@ switch case_index
         
     case 6  % 知 beta theta
         % 内置函数画beta
-        fimplicit(fig_obliq_beta,func_beta(theta),[1,10,5,100],'LineWidth',1);
+        fimplicit(fig_obliq_beta,func_beta(theta),[1,200,5,100],'LineWidth',1);
         set(fig_obliq_beta,'XScale', 'log') %x轴取对数坐标
         set(fig_obliq_beta,'Xtick',1:10)
+        axis(fig_obliq_beta,[1 10 0 90])
         title(fig_obliq_beta,['\beta -','Ma_1',' Figure']);
         ylabel(fig_obliq_beta,['\beta','/(°)']);
         xlabel(fig_obliq_beta,'Ma_1');
@@ -426,7 +429,7 @@ switch case_index
         
     case 3  % 知theta ma1
         % 内置函数画beta
-        fimplicit(ax_temp,func_beta(theta),[1,10,5,100],'LineWidth',1);
+        fimplicit(ax_temp,func_beta(theta),[0.5,100,5,100],'LineWidth',1,'Visible','off');
         set(ax_temp,'Visible',0);
         
         % 求值（用Ma1）
@@ -442,9 +445,10 @@ switch case_index
         set(ax_temp,'Visible',0);
         theta = chazhi(beta,ax_temp.Children.YData,ax_temp.Children.XData);
         theta = filterData(theta,[0 45.5]);
+        theta = theta(1);
         
         % 内置函数画beta
-        fimplicit(ax_temp,func_beta(theta),[1,10,5,100],'LineWidth',1);
+        fimplicit(ax_temp,func_beta(theta),[1,200,5,100],'LineWidth',1,'Visible','off');
         set(ax_temp,'Visible',0);
        
         % 求值（用Ma1）
@@ -457,7 +461,7 @@ switch case_index
         
     case 5  % 知ma2 theta
         % 内置函数画beta
-        fimplicit(ax_temp,func_beta(theta),[1,10,5,100],'LineWidth',1);
+        fimplicit(ax_temp,func_beta(theta),[1,200,5,100],'LineWidth',1,'Visible','off');
         set(ax_temp,'Visible',0);
         
         % 求值（用Ma2）
@@ -476,7 +480,7 @@ switch case_index
         
     case 6  % 知 beta theta
         % 内置函数画beta
-        fimplicit(ax_temp,func_beta(theta),[1,10,5,100],'LineWidth',1);
+        fimplicit(ax_temp,func_beta(theta),[1,200,5,100],'LineWidth',1,'Visible','off');
         set(ax_temp,'Visible',0);
         
         % 求值（用beta）

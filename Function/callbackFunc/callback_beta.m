@@ -4,6 +4,7 @@ function callback_beta(~,~,h_fig)
 %% 获取控件句柄
     pum = getappdata(h_fig,'pum');              % 获取popupmenu控件数据
     data = guidata(h_fig);
+    bg = getappdata(h_fig,'bg');
     edit_ma1 = getappdata(h_fig,'edit_ma1');    % 获取Ma1的相关value
     edit_ma2 = getappdata(h_fig,'edit_ma2');    % 获取Ma2的相关value
     edit_beta = getappdata(h_fig,'edit_beta');  % 获取beta的相关value
@@ -46,14 +47,20 @@ function callback_beta(~,~,h_fig)
             elseif nan_num == 2 % 如果输入两个参数则开始计算
                 switch nan_index
                     case 1  % 求解m2,theta 已知 m1, beta
+                        % 关闭强弱解开关
+                        set(bg,'Visible','off');
                         [m1 , m2, ~, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma1','beta',[m1, beta]); 
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
                     case 2  % 求解m1, theta 已知 m2, beta
+                        % 关闭强弱解开关
+                        set(bg,'Visible','off');
                         [m1 , m2, ~, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma2','beta',[m2, beta]); 
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
                     case 3  % 求解m2, m1 已知 beta, theta
+                        % 关闭强弱解开关
+                        set(bg,'Visible','off');
                         [m1 , m2, ~, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'beta','theta',[beta, theta]); 
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);

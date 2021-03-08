@@ -4,6 +4,7 @@ function callback_theta(~,~,h_fig)
 %% 获取控件句柄
     pum = getappdata(h_fig,'pum');              % 获取popupmenu控件数据
     data = guidata(h_fig);
+    bg = getappdata(h_fig,'bg');
     edit_ma1 = getappdata(h_fig,'edit_ma1');    % 获取Ma1的相关value
     edit_ma2 = getappdata(h_fig,'edit_ma2');    % 获取Ma2的相关value
     res_beta = getappdata(h_fig,'res_beta');  % 获取beta的相关value
@@ -47,16 +48,23 @@ function callback_theta(~,~,h_fig)
             elseif nan_num == 2 % 如果输入两个参数则开始计算
                 switch nan_index
                     case 1  % 求解beta,m2 已知 m1, theta
-                        warndlg('目前尚不支持Ma1和theta查值！');
-                        return;
+%                         warndlg('目前尚不支持Ma1和theta查值！');
+%                         return;
                         [m1 , m2, beta, r2r1, p2p1, T2T1, ~] = getObliValue(h_fig,'ma1','theta',[m1, theta]); 
+                        % 开启强弱解开关
+                        set(bg,'Visible','on');
+                        data.ObliQiang = [[m1,m1] ; m2; beta; r2r1; p2p1; T2T1; [theta,theta]];
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
                     case 2  % 求解m1, beta 已知 m2, theta
+                        % 关闭强弱解开关
+                        set(bg,'Visible','off');
                         [m1 , m2, beta, r2r1, p2p1, T2T1, ~] = getObliValue(h_fig,'ma2','theta',[m2, theta]); 
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
                     case 3  % 求解m1, m2 已知 beta, theta
+                        % 关闭强弱解开关
+                        set(bg,'Visible','off');
                         [m1 , m2, beta, r2r1, p2p1, T2T1, ~] = getObliValue(h_fig,'beta','theta',[beta, theta]); 
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
@@ -67,12 +75,12 @@ function callback_theta(~,~,h_fig)
             end
             
             % 设置返回
-            set(edit_ma1,'string',string(m1));
-            set(edit_ma2,'string',string(m2));
-            set(edit_beta,'string',string(beta));
-            set(res_T2T1,'string',string(T2T1));
-            set(res_p2p1,'string',string(p2p1));
-            set(res_r2r1,'string',string(r2r1));
+            set(edit_ma1,'string',string(m1(1)));
+            set(edit_ma2,'string',string(m2(1)));
+            set(edit_beta,'string',string(beta(1)));
+            set(res_T2T1,'string',string(T2T1(1)));
+            set(res_p2p1,'string',string(p2p1(1)));
+            set(res_r2r1,'string',string(r2r1(1)));
     end
     
 end
