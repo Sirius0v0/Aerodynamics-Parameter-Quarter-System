@@ -1,13 +1,31 @@
-function y_result = chazhi(x0,xi,yi)
+function [y0_s,y0_la] = chazhi(x0,xi,yi)
 %差商表，取3个数,点运算（x0也为向量）
 %给m插值出theta时，y0_s是较小解，y0_la是较大解
 %xi可以单调，可以非单调（可以先增后减，可以先减后增）；yi必然单调（单增或单减均可）
-xixiao=min(xi);%xi的最小值
-xida=max(xi);%xi的最大值
 
 y0_s=zeros(1,length(x0));%预分配内存
 y0_la=zeros(1,length(x0));
 
+cha_1=xi(2:end)-xi(1:(end-1));%第一次后减前
+cha_1>0;
+cha_2=cha_1(2:end)-cha_1(1:(end-1));
+chuwei=find(cha_2~=0);
+mowei=chuwei+1;%精确定位到最值点(从前往后，每一段的最后一个点)，暂未考虑最值点是两个相邻点的情况
+if length(mowei)==0 %单调
+%     jinlai_2=2
+    biaozhi=2;
+elseif length(mowei)==1%非单调，且只有两段
+    biaozhi=1;
+else
+%  jinlai=1
+    moweishu=mowei(2);
+    zhongjian=xi(1:moweishu);%截取了前面有效的两部分，非单调
+    xi=zhongjian;
+    biaozhi=1;
+end
+% biaozhi
+xixiao=min(xi);%xi的最小值
+xida=max(xi);%xi的最大值
 
 for j=1:1:length(x0)
 if (x0(j)>=xixiao&&x0(j)<=xida)==0%x0不符合要求
@@ -15,25 +33,28 @@ if (x0(j)>=xixiao&&x0(j)<=xida)==0%x0不符合要求
 end
 end
 
-%判断xi单调性,不涉及x0
-for i=2:1:(length(xi)-1)
-    if ((xi(i-1)<xi(i))&&(xi(i)>xi(i+1))==1)||((xi(i-1)>xi(i))&&(xi(i)<xi(i+1))==1)%单调性有变化，即有增减
-        break
-    end
-end
+
+% %判断xi单调性,不涉及x0
+% for i=2:1:(length(xi)-1)
+%     if ((xi(i-1)<xi(i))&&(xi(i)>xi(i+1))==1)||((xi(i-1)>xi(i))&&(xi(i)<xi(i+1))==1)%单调性有变化，即有增减
+%         break
+%     end
+% end
 %i
-if i~=(length(xi)-1)%xi非单调,biaozhi=1
-%     m=xi;
-%     beta=yi;
-    biaozhi=1;
-else %xi单调,biaozhi=2
-%     beta=xi;
-%     m=yi;
-    biaozhi=2;
-end
+% %判断是否单调
+% if p~=(length(xi)-1)%xi非单调,biaozhi=1
+% %     m=xi;
+% %     beta=yi;
+%     biaozhi=1;
+% else %xi单调,biaozhi=2
+% %     beta=xi;
+% %     m=yi;
+%     biaozhi=2;
+% end
 % m
 % beta
 %biaozhi
+%判断增减性
 if biaozhi==1%xi非单调
     if xi(1)>xi(2)%先减后增
        mokuai=11;
@@ -177,12 +198,6 @@ else
 end
 
 end%for循环的
-
-if y0_s == y0_la
-    y_result = y0_s;
-else
-    y_result = [y0_s',y0_la'];
-end
    
 end
 
