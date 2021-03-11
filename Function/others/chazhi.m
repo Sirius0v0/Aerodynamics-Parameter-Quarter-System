@@ -7,7 +7,8 @@ y0_s=zeros(1,length(x0));%预分配内存
 y0_la=zeros(1,length(x0));
 
 cha_1=xi(2:end)-xi(1:(end-1));%第一次后减前
-cha_1>0;
+cha_1(find(cha_1>0))=1;
+cha_1(find(cha_1<0))=0;
 cha_2=cha_1(2:end)-cha_1(1:(end-1));
 chuwei=find(cha_2~=0);
 mowei=chuwei+1;%精确定位到最值点(从前往后，每一段的最后一个点)，暂未考虑最值点是两个相邻点的情况
@@ -23,6 +24,7 @@ else
     xi=zhongjian;
     biaozhi=1;
 end
+
 % biaozhi
 xixiao=min(xi);%xi的最小值
 xida=max(xi);%xi的最大值
