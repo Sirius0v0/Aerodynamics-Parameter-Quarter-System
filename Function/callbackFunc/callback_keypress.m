@@ -3,7 +3,7 @@ function callback_keypress(evnt,h_fig)
 data = guidata(h_fig);
 % disp(evnt.Key)
 
-if (data.NormalGraphExist || data.ObliqueGraphExist)
+if (data.NormalGraphExist || data.ObliqueGraphExist || data.isPreObliFig)
     switch evnt.Key
         case 'hyphen'        % 按键 -
             % 将表征图像如何显示的矩阵进行左移 以向左切换图片

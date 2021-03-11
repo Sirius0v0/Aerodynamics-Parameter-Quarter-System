@@ -51,6 +51,7 @@ switch index_ax
         data.MarkedData = [ma1;ma2;beta;r2r1;p2p1;t2t1;theta];
     case {6,7,8,9}  % ma2 r2r1 p2p1 t2t1
         warndlg('目前尚不支持在此图中选点查值！');
+        return
 %     case {5,6,7,8,9}    % beta ma2 r2r1 p2p1 t2t1
         
 %         % 判断theta的选点取值

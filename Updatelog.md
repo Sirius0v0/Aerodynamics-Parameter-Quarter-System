@@ -12,11 +12,11 @@
 >
 > Summary: 用于快捷查询正斜激波相关数值并绘图可视化
 >
-> Last Updated Date:  2021.3.7
+> Last Updated Date:  2021.3.11
 
 
 
-###### APQS 21w04a1 Release-notes:
+###### APQS 21w04a1(1.1.1.210128_alpha) Release-notes:
 
 ---
 
@@ -28,7 +28,7 @@
 
 
 
-###### APQS 21w04a2 Release-notes:
+###### APQS 21w04a2(1.1.2.210129_alpha) Release-notes:
 
 ---
 
@@ -41,7 +41,7 @@
 
 
 
-###### APQS 21w08a1 Release-notes:
+###### APQS 21w08a1(1.1.3.210223_alpha) Release-notes:
 
 ---
 
@@ -55,7 +55,7 @@
 
 
 
-###### APQS 21w08b1 Release-notes:
+###### APQS 21w08b1(1.2.1.210224_alpha) Release-notes:
 
 ---
 
@@ -67,7 +67,7 @@
 + 未点击绘图时按键`-`或`=`导致程序报错的bug
 + 使用方向键切换输入时图像变动的错误
 
-###### APQS 21w08a2 Release-notes:
+###### APQS 21w08a2(1.2.2.210226_alpha) Release-notes:
 
 ---
 
@@ -83,7 +83,7 @@
 + 增加图上选点并显示（仅正激波）
 + 增加插值函数，对用户输入进行近似输出
 
-###### APQS 21w08b2 Release-notes:
+###### APQS 21w08b2(1.2.4.210228_alpha) Release-notes:
 
 ---
 
@@ -101,7 +101,7 @@
 + 在斜激波游动鼠标时报错的bug
 + 重构斜激波画图的代码，增强选点的可拓展性。
 
-###### APQS 21w09a1 Release-notes:
+###### APQS 21w09a1(1.3.4.210308_alpha) Release-notes:
 
 ---
 
@@ -125,3 +125,24 @@
 
 + 增加选图上点查值的功能
 + 增加记录数据并导出数据为`*.xlsx`,`*.xls`,`*.xlsm`,`*.txt`,`*.csv` 
++ 增加批量计算功能(仅Ma1-Beta查值)
+
+**时间**：2021.3.8
+
+**变化**：
+
++ 修复3个bug
++ 完善批量计算功能(添加theta-Beta、Ma2-theta查值)
++ 开启Ma1-theta查值和批量计算Ma1-theta
+
+###### APQS 21w10a1(1.4.1.210311_alpha) Release-notes：
+
+---
+
+**时间**：2021.3.11
+
+**变化**：
+
++ 暂时关闭Ma2-beta查表功能以完善其功能；
++ 添加快捷键
++ 添加批量计算进度条
