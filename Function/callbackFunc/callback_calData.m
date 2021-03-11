@@ -11,6 +11,7 @@ T_Obli = readtable(filename,'Sheet','Oblique_Shock_Data');
 % 正斜激波输入是否为空检查
 isNormEmpty = isempty(T_Norm);
 isObliEmpty = isempty(T_Obli);
+waitbar_h = waitbar(0,'正在导入数据...');     % 显示进度条
 
 %% 正激波
 if ~isNormEmpty
@@ -78,6 +79,10 @@ if ~isObliEmpty
 end
 
 %% 计算
+% 预先计算任务总量
+total = height(T_Norm) + height(T_Obli);
+current = 0;
+
 % 正激波
 Norm = [];
 if ~isNormEmpty
@@ -114,6 +119,8 @@ if ~isObliEmpty
            for item = 1:height(T_Obli)
                [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma1','beta',[T_Obli{item,1}, T_Obli{item,3}],1); 
                Obli = [Obli;m1 , m2, beta, r2r1, p2p1, T2T1, theta];
+               current = current + 1;       % 进度条加一
+               waitbar(current/total,waitbar_h,'正在计算中...');
            end
            
        case 'ma1theta'
@@ -121,24 +128,48 @@ if ~isObliEmpty
                [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma1','theta',[T_Obli{item,1}, T_Obli{item,7}],1); 
                Obli_ruo = [Obli_ruo;m1 , m2(1), beta(1), r2r1(1), p2p1(1), T2T1(1), theta];
                Obli_qiang = [Obli_qiang;m1 , m2(2), beta(2), r2r1(2), p2p1(2), T2T1(2), theta];
+               current = current + 1;       % 进度条加一
+               waitbar(current/total,waitbar_h,'正在计算中...');
            end
        case 'ma2beta'
+           warndlg('目前尚不支持beta和Ma2查值！');
+                        return;
            for item = 1:height(T_Obli)
                [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma2','beta',[T_Obli{item,2}, T_Obli{item,3}],1); 
-               Obli = [Obli;m1 , m2, beta, r2r1, p2p1, T2T1, theta];
+               if length(theta) == 1
+                   Obli = [Obli;m1 , m2, beta, r2r1, p2p1, T2T1, theta];
+               elseif length(theta) == 2
+                   Obli = [Obli;m1(1) , m2(1), beta(1), r2r1(1), p2p1(1), T2T1(1), theta(1)];
+                   Obli = [Obli;m1(2) , m2(2), beta(2), r2r1(2), p2p1(2), T2T1(2), theta(2)];
+               end
+               current = current + 1;       % 进度条加一
+               waitbar(current/total,waitbar_h,'正在计算中...');
            end
        case 'ma2theta'
            for item = 1:height(T_Obli)
                [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma2','theta',[T_Obli{item,2}, T_Obli{item,7}],1); 
                Obli = [Obli;m1 , m2, beta, r2r1, p2p1, T2T1, theta];
+               current = current + 1;       % 进度条加一
+               waitbar(current/total,waitbar_h,'正在计算中...');
            end
        case 'betatheta'
            for item = 1:height(T_Obli)
                [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'beta','theta',[T_Obli{item,3}, T_Obli{item,7}],1); 
                Obli = [Obli;m1 , m2, beta, r2r1, p2p1, T2T1, theta];
+               current = current + 1;       % 进度条加一
+               waitbar(current/total,waitbar_h,'正在计算中...');
            end
    end
 end
+
+% 关于进度条 指满
+while (current/total < 1)
+    current = current + 1;       % 进度条加一
+   waitbar(current/total,waitbar_h,'正在计算中...');
+end
+waitbar(1,waitbar_h,'完成！');
+pause(1)
+close(waitbar_h);
 
 %% 输出保存
 answer = questdlg('已计算完毕！保存请选择路径', ...

@@ -12,7 +12,7 @@
 >
 > Summary: 用于快捷查询正斜激波相关数值并绘图可视化
 >
-> Last Updated Date:  2021.3.8
+> Last Updated Date:  2021.3.11
 
 
 
@@ -134,3 +134,15 @@
 + 修复3个bug
 + 完善批量计算功能(添加theta-Beta、Ma2-theta查值)
 + 开启Ma1-theta查值和批量计算Ma1-theta
+
+###### APQS 21w10a1(1.4.1.210311_alpha) Release-notes：
+
+---
+
+**时间**：2021.3.11
+
+**变化**：
+
++ 暂时关闭Ma2-beta查表功能以完善其功能；
++ 添加快捷键
++ 添加批量计算进度条

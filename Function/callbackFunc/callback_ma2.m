@@ -5,6 +5,7 @@ function callback_ma2(~,~,h_fig)
     pum = getappdata(h_fig,'pum');              % 获取popupmenu控件数据
     data = guidata(h_fig);
     bg = getappdata(h_fig,'bg');
+    bg_beta = getappdata(h_fig,'bg_beta');
     edit_ma1 = getappdata(h_fig,'edit_ma1');    % 获取Ma1的相关value
     edit_ma2 = getappdata(h_fig,'edit_ma2');    % 获取Ma2的相关value
     res_beta = getappdata(h_fig,'res_beta');  % 获取beta的相关value
@@ -18,8 +19,9 @@ function callback_ma2(~,~,h_fig)
     m2 = str2double(get(edit_ma2,'string'));    % 获取m2内容
     beta = str2double(get(edit_beta,'string'));
     theta = str2double(get(edit_theta,'string'));
+    panduan = size(get(edit_ma2,'string'));
     % 检查输入
-    if strcmp(m2,'')
+    if panduan(2) == 0
         return
     else
         if isnan(m2)
@@ -81,14 +83,22 @@ function callback_ma2(~,~,h_fig)
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
                     case 2  % 求解m1, theta 已知 m2, beta
-                        % 关闭强弱解开关
+                        warndlg('目前尚不支持beta和Ma2查值！');
+                        return;
+                        % 关闭强弱解开关和双解开关
                         set(bg,'Visible','off');
-                        [m1 , ~, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma2','beta',[m2, beta]); 
+                        set(bg_beta,'Visible','off');
+                        [m1 , ~, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma2','beta',[m2, beta]);
+                        if length(theta) == 2
+                            data.Ma2beta = [m1 ; m2; beta; r2r1; p2p1; T2T1; theta];
+                            set(bg_beta,'Visible','on');
+                        end
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
                     case 3  % 求解m1, beta 已知 m2, theta
-                        % 关闭强弱解开关
+                        % 关闭强弱解开关和双解开关
                         set(bg,'Visible','off');
+                        set(bg_beta,'Visible','off');
                         [m1 , ~, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma2','theta',[m2, theta]); 
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
@@ -99,12 +109,12 @@ function callback_ma2(~,~,h_fig)
             end
             
             % 设置返回
-            set(edit_ma1,'string',string(m1));
-            set(edit_theta,'string',string(theta));
-            set(edit_beta,'string',string(beta));
-            set(res_T2T1,'string',string(T2T1));
-            set(res_p2p1,'string',string(p2p1));
-            set(res_r2r1,'string',string(r2r1));
+            set(edit_ma1,'string',string(m1(1)));
+            set(edit_theta,'string',string(theta(1)));
+            set(edit_beta,'string',string(beta(1)));
+            set(res_T2T1,'string',string(T2T1(1)));
+            set(res_p2p1,'string',string(p2p1(1)));
+            set(res_r2r1,'string',string(r2r1(1)));
     end
     
 end

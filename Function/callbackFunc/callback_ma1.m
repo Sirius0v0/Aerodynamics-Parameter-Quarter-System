@@ -5,6 +5,7 @@ function callback_ma1(~,~,h_fig)
     pum = getappdata(h_fig,'pum');                  % 获取popupmenu控件数据
     data = guidata(h_fig);
     bg = getappdata(h_fig,'bg');
+    bg_beta = getappdata(h_fig,'bg_beta');
     edit_ma1 = getappdata(h_fig,'edit_ma1');    % 获取Ma1的相关value
     edit_ma2 = getappdata(h_fig,'edit_ma2');    % 获取Ma2的相关value
     res_beta = getappdata(h_fig,'res_beta');  % 获取beta的相关value
@@ -18,8 +19,9 @@ function callback_ma1(~,~,h_fig)
     m2 = str2double(get(edit_ma2,'string'));    % 获取m2内容
     beta = str2double(get(edit_beta,'string'));
     theta = str2double(get(edit_theta,'string'));
+    panduan = size(get(edit_ma1,'string'));
     % 检查输入
-    if strcmp(m1,'')
+    if panduan(2) == 0
         return
     else
         if isnan(m1)
@@ -66,8 +68,9 @@ function callback_ma1(~,~,h_fig)
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
                     case 2  % 求解m2, theta 已知 m1, beta
-                        % 关闭强弱解开关
+                        % 关闭强弱解开关和双解开关
                         set(bg,'Visible','off');
+                        set(bg_beta,'Visible','off');
                         [~ , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma1','beta',[m1, beta]); 
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
@@ -75,8 +78,9 @@ function callback_ma1(~,~,h_fig)
 %                         warndlg('目前尚不支持Ma1和theta查值！');
 %                         return;
                         [~ , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma1','theta',[m1, theta]); 
-                        % 开启强弱解开关
+                        % 开启强弱解开关 并关闭双解开关
                         set(bg,'Visible','on');
+                        set(bg_beta,'Visible','off');
                         data.ObliQiang = [[m1,m1] ; m2; beta; r2r1; p2p1; T2T1; [theta,theta]];
                         data.isPreObliFig = 1;  % 记录已经绘制用户查值图
                         guidata(h_fig,data);
