@@ -10,6 +10,7 @@ function callback_menu(~,~,h_fig)
     res_p2p1 = getappdata(h_fig,'res_p2p1');
     res_T2T1 = getappdata(h_fig,'res_T2T1');
     res_r2r1 = getappdata(h_fig,'res_r2r1');
+    bg = getappdata(h_fig,'bg');
     pum = getappdata(h_fig,'pum');                  % 获取popupmenu控件数据
     switch pum.Value
         case 1
@@ -23,8 +24,9 @@ function callback_menu(~,~,h_fig)
             set(res_p2p1,'string','');
             set(res_T2T1,'string','');
             set(res_r2r1,'string','');
-            set(res_beta,'string',strcat(string(90),'°' ))
+            set(res_beta,'string',string(90))
             callback_switchFig(h_fig);
+            set(bg,'Visible','off');
         case 2
             % 当选择2（斜激波）则显示theta,并让beta可编辑
             set(text_theta,'Visible','on');
