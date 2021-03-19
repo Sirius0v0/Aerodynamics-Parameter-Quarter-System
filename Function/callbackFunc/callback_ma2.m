@@ -70,6 +70,7 @@ function callback_ma2(~,~,h_fig)
             set(res_r2r1,'string',string(r2r1));
             set(res_beta,'string',string(beta));
         case 2
+            try
             % 当选择2（斜激波）则计算相关值
             [nan_num, nan_index] = howmanynan([m1, beta, theta]);
             if nan_num == 3     % 如果只输入一个参数则返回
@@ -115,6 +116,17 @@ function callback_ma2(~,~,h_fig)
             set(res_T2T1,'string',string(T2T1(1)));
             set(res_p2p1,'string',string(p2p1(1)));
             set(res_r2r1,'string',string(r2r1(1)));
+            
+            catch ME
+                switch ME.message
+                    case 'x0中有数值不在xi范围内'
+                        errordlg('错误！请检查参数合理性','错误','modal')
+                        return
+                    otherwise
+                        errordlg('错误！请检查参数合理性','错误','modal')
+                        return
+                end
+            end
     end
     
 end
