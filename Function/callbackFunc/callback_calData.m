@@ -19,6 +19,7 @@ if ~isNormEmpty
     if width(T_Norm) ~= 6
         % 正激波参数不等于6则存在格式问题
         errordlg('错误！请检查正激波表格格式正确性！','错误的格式','modal')
+        close(waitbar_h);
         return
     end
 
@@ -33,6 +34,7 @@ if ~isNormEmpty
     end
     if num_arg ~= 1
         errordlg('错误！请检查正激波表格数据格式！','错误的输入','modal')
+        close(waitbar_h);
         return
     end
 end
@@ -43,6 +45,7 @@ if ~isObliEmpty
     if width(T_Obli) ~= 7
         % 斜激波参数不等于7则存在格式问题
         errordlg('错误！请检查斜激波表格格式正确性！','错误的格式','modal')
+        close(waitbar_h);
         return
     end
 
@@ -57,11 +60,13 @@ if ~isObliEmpty
     end
     if num_arg ~= 2
         errordlg('错误！请检查斜激波表格数据格式！','错误的输入','modal')
+        close(waitbar_h);
         return
     else
         % 如果参数合法则对输入的参数编码
         if (input_index_Obli(1)==1) && (input_index_Obli(2)==2)
             warndlg('目前尚不支持Ma1和Ma2查值！');
+            close(waitbar_h);
             return;
             code = 'ma1ma2';
         elseif (input_index_Obli(1)==1) && (input_index_Obli(2)==3)
@@ -133,6 +138,7 @@ if ~isObliEmpty
            end
        case 'ma2beta'
            warndlg('目前尚不支持beta和Ma2查值！');
+           close(waitbar_h);
                         return;
            for item = 1:height(T_Obli)
                [m1 , m2, beta, r2r1, p2p1, T2T1, theta] = getObliValue(h_fig,'ma2','beta',[T_Obli{item,2}, T_Obli{item,3}],1); 

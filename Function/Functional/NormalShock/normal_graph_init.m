@@ -19,9 +19,9 @@ fig_t2t1 = getappdata(h_fig,'fig_t2t1');
 plot(fig_ma2,1:0.01:30,normalm1_m2(1:0.01:30));
 grid(fig_ma2,'on')
 grid(fig_ma2,'minor')
-title(fig_ma2,'M2随M1变化规律');
-xlabel(fig_ma2,'M1');
-ylabel(fig_ma2,'M2');
+title(fig_ma2,'Ma2随Ma1变化规律');
+xlabel(fig_ma2,'Ma1');
+ylabel(fig_ma2,'Ma2');
 
 %% RD-Ma1
 % fig_r2r1 = axes('Parent',h_fig,...
@@ -36,8 +36,8 @@ ylabel(fig_ma2,'M2');
 plot(fig_r2r1,1:0.01:30,normalm1_RD(1:0.01:30));
 grid(fig_r2r1,'on')
 grid(fig_r2r1,'minor')
-title(fig_r2r1,'ρ2/ρ1随M1变化规律');
-xlabel(fig_r2r1,'M1');
+title(fig_r2r1,'ρ2/ρ1随Ma1变化规律');
+xlabel(fig_r2r1,'Ma1');
 ylabel(fig_r2r1,'ρ2/ρ1');
 
 %% RP-Ma1
@@ -53,8 +53,8 @@ ylabel(fig_r2r1,'ρ2/ρ1');
 plot(fig_p2p1,1:0.01:30,normalm1_RP(1:0.01:30));
 grid(fig_p2p1,'on')
 grid(fig_p2p1,'minor')
-title(fig_p2p1,'P2/P1随M1变化规律');
-xlabel(fig_p2p1,'M1');
+title(fig_p2p1,'P2/P1随Ma1变化规律');
+xlabel(fig_p2p1,'Ma1');
 ylabel(fig_p2p1,'P2/P1');
 
 %% RT-Ma1
@@ -70,8 +70,8 @@ ylabel(fig_p2p1,'P2/P1');
 plot(fig_t2t1,1:0.01:30,normalm1_RT(1:0.01:30));
 grid(fig_t2t1,'on')
 grid(fig_t2t1,'minor')
-title(fig_t2t1,'T2/T1随M1变化规律');
-xlabel(fig_t2t1,'M1');
+title(fig_t2t1,'T2/T1随Ma1变化规律');
+xlabel(fig_t2t1,'Ma1');
 ylabel(fig_t2t1,'T2/T1');
 
 %% 初始化可见性

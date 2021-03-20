@@ -10,12 +10,19 @@ else
 end
 
 isdone = 0;
-[name, path, index] = uiputfile({'*.xlsx';'*.xls';'*.xlsm';'*.txt';'*.csv'},'');
+[name, path, index] = uiputfile({'*.xlsx';'*.xls';'*.xlsm';'*.txt';'*.csv'},'选择保存路径');
 if index == 0
     return
 elseif (index == 1) || (index == 2) || (index == 3)
     % 表格格式
     filename = fullfile(path,name); % 拼接文件路径
+    
+    index_houzhui = find(filename == '.');
+    if ~ismember(filename(index_houzhui(end):end),{'.xlsx';'.xls';'.xlsm';'.txt';'.csv'})
+        errordlg('错误！请检查文件名后缀是否合法！','错误的文件名','modal')
+        return
+    end
+    
     if ~isempty(Norm)
         % 保存正激波
         [row, ~] = size(Norm);

@@ -1,7 +1,7 @@
 function callback_updata(h_fig)
 % 更新界面数据为选中点
-title_list = {'M2随M1变化规律','ρ2/ρ1随M1变化规律','P2/P1随M1变化规律','T2/T1随M1变化规律',...
-            '\beta -Ma_1 Figure','Ma_2 -Ma_1 Figure','\rho_2/\rho_1-Ma_1 Figure','p_2/p_1-Ma_1 Figure','T_2/T_1-Ma_1 Figure'};    % 枚举所有类型的图像可能
+title_list = {'Ma2随Ma1变化规律','ρ2/ρ1随Ma1变化规律','P2/P1随Ma1变化规律','T2/T1随Ma1变化规律',...
+            ' β随Ma1变化规律 ',' Ma2随Ma1变化规律 ',' ρ2/ρ1随Ma1变化规律 ',' P2/P1随Ma1变化规律 ',' T2/T1随Ma1变化规律 '};    % 枚举所有类型的图像可能
 theta_list = [2 8 12 18 24 34];
 %% 获取相关句柄及要显示的数据
 pum = getappdata(h_fig,'pum');

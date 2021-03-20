@@ -83,7 +83,7 @@ switch case_index
         fimplicit(fig_obliq_beta,func_beta(theta),[1,10,5,100],'LineWidth',1);
         set(fig_obliq_beta,'XScale', 'log') %x轴取对数坐标
         set(fig_obliq_beta,'Xtick',1:10)
-        title(fig_obliq_beta,['\beta -','Ma_1',' Figure']);
+        title(fig_obliq_beta,' β随Ma1变化规律 ');
         ylabel(fig_obliq_beta,['\beta','/(°)']);
         xlabel(fig_obliq_beta,'Ma_1');
         grid(fig_obliq_beta,'on')
@@ -93,7 +93,7 @@ switch case_index
         % 画ma2-ma1
         plot(fig_obliq_ma2,fig_obliq_beta.Children.XData, obliquem1_m2(fig_obliq_beta.Children.XData,fig_obliq_beta.Children.YData,theta));
         set(fig_obliq_ma2,'Ytick',1:10)
-        title(fig_obliq_ma2,['Ma_2 -','Ma_1',' Figure']);
+        title(fig_obliq_ma2,' Ma2随Ma1变化规律 ');
         ylabel(fig_obliq_ma2,'Ma_2');
         xlabel(fig_obliq_ma2,'Ma_1');
         grid(fig_obliq_ma2,'on')
@@ -106,14 +106,14 @@ switch case_index
         set(fig_obliq_r2r1,'GridLineStyle','--')
         set(fig_obliq_r2r1,'XScale', 'log') %x轴取对数坐标
         set(fig_obliq_r2r1,'Xtick',1:10)
-        title(fig_obliq_r2r1,['\rho_2','/','\rho_1','-','Ma_1 Figure'])
+        title(fig_obliq_r2r1,' ρ2/ρ1随Ma1变化规律 ')
         xlabel(fig_obliq_r2r1,'Ma_1')
         ylabel(fig_obliq_r2r1,['\rho_2','/','\rho_1'])
         % 内置函数画p2p1
         fimplicit(fig_obliq_p2p1,func_p2p1(theta),[1,10],'LineWidth',0.8);
         grid(fig_obliq_p2p1,'on')
         grid(fig_obliq_p2p1,'minor')
-        title(fig_obliq_p2p1,['p_2','/','p_1','-','Ma_1 Figure'])
+        title(fig_obliq_p2p1,' P2/P1随Ma1变化规律 ')
         xlabel(fig_obliq_p2p1,'Ma_1')
         ylabel(fig_obliq_p2p1,['p_2','/','p_1'])
         set(fig_obliq_p2p1,'GridLineStyle','--')
@@ -126,8 +126,8 @@ switch case_index
         set(fig_obliq_t2t1,'GridLineStyle','--')
         set(fig_obliq_t2t1,'YScale', 'log') %y轴取对数坐标
         set(fig_obliq_t2t1,'Xtick',1:10)
-        set(fig_obliq_t2t1,'Ytick',[1:10,13,17])
-        title(fig_obliq_t2t1,['T_2','/','T_1','-','Ma_1 Figure'])
+        set(fig_obliq_t2t1,'Ytick',[1:10,13,17,23,30,40,53,70,90])
+        title(fig_obliq_t2t1,' T2/T1随Ma1变化规律 ')
         xlabel(fig_obliq_t2t1,'Ma_1')
         ylabel(fig_obliq_t2t1,['T_2','/','T_1'])
         
@@ -146,7 +146,7 @@ switch case_index
         set(fig_obliq_beta,'XScale', 'log') %x轴取对数坐标
         set(fig_obliq_beta,'Xtick',1:10)
         axis(fig_obliq_beta,[1 10 0 90])
-        title(fig_obliq_beta,['\beta -','Ma_1',' Figure']);
+        title(fig_obliq_beta,' β随Ma1变化规律 ');
         ylabel(fig_obliq_beta,['\beta','/(°)']);
         xlabel(fig_obliq_beta,'Ma_1');
         grid(fig_obliq_beta,'on')
@@ -155,7 +155,7 @@ switch case_index
         % 画ma2-ma1
         plot(fig_obliq_ma2,fig_obliq_beta.Children.XData, obliquem1_m2(fig_obliq_beta.Children.XData,fig_obliq_beta.Children.YData,theta));
         set(fig_obliq_ma2,'Ytick',1:10)
-        title(fig_obliq_ma2,['Ma_2 -','Ma_1',' Figure']);
+        title(fig_obliq_ma2,' Ma2随Ma1变化规律 ');
         ylabel(fig_obliq_ma2,'Ma_2');
         xlabel(fig_obliq_ma2,'Ma_1');
         grid(fig_obliq_ma2,'on')
@@ -168,14 +168,14 @@ switch case_index
         set(fig_obliq_r2r1,'GridLineStyle','--')
         set(fig_obliq_r2r1,'XScale', 'log') %x轴取对数坐标
         set(fig_obliq_r2r1,'Xtick',1:10)
-        title(fig_obliq_r2r1,['\rho_2','/','\rho_1','-','Ma_1 Figure'])
+        title(fig_obliq_r2r1,' ρ2/ρ1随Ma1变化规律 ')
         xlabel(fig_obliq_r2r1,'Ma_1')
         ylabel(fig_obliq_r2r1,['\rho_2','/','\rho_1'])
         % 内置函数画p2p1
         fimplicit(fig_obliq_p2p1,func_p2p1(theta),[1,10],'LineWidth',0.8);
         grid(fig_obliq_p2p1,'on')
         grid(fig_obliq_p2p1,'minor')
-        title(fig_obliq_p2p1,['p_2','/','p_1','-','Ma_1 Figure'])
+        title(fig_obliq_p2p1,' P2/P1随Ma1变化规律 ')
         xlabel(fig_obliq_p2p1,'Ma_1')
         ylabel(fig_obliq_p2p1,['p_2','/','p_1'])
         set(fig_obliq_p2p1,'GridLineStyle','--')
@@ -188,8 +188,8 @@ switch case_index
         set(fig_obliq_t2t1,'GridLineStyle','--')
         set(fig_obliq_t2t1,'YScale', 'log') %y轴取对数坐标
         set(fig_obliq_t2t1,'Xtick',1:10)
-        set(fig_obliq_t2t1,'Ytick',[1:10,13,17])
-        title(fig_obliq_t2t1,['T_2','/','T_1','-','Ma_1 Figure'])
+        set(fig_obliq_t2t1,'Ytick',[1:10,13,17,23,30,40,53,70,90])
+        title(fig_obliq_t2t1,' T2/T1随Ma1变化规律 ')
         xlabel(fig_obliq_t2t1,'Ma_1')
         ylabel(fig_obliq_t2t1,['T_2','/','T_1'])
         
@@ -215,7 +215,7 @@ switch case_index
         fimplicit(fig_obliq_beta,func_beta(theta),[1,10,5,100],'LineWidth',1);
         set(fig_obliq_beta,'XScale', 'log') %x轴取对数坐标
         set(fig_obliq_beta,'Xtick',1:10)
-        title(fig_obliq_beta,['\beta -','Ma_1',' Figure']);
+        title(fig_obliq_beta,' β随Ma1变化规律 ');
         ylabel(fig_obliq_beta,['\beta','/(°)']);
         xlabel(fig_obliq_beta,'Ma_1');
         grid(fig_obliq_beta,'on')
@@ -225,7 +225,7 @@ switch case_index
         % 画ma2-ma1
         plot(fig_obliq_ma2,fig_obliq_beta.Children.XData, obliquem1_m2(fig_obliq_beta.Children.XData,fig_obliq_beta.Children.YData,theta));
         set(fig_obliq_ma2,'Ytick',1:10)
-        title(fig_obliq_ma2,['Ma_2 -','Ma_1',' Figure']);
+        title(fig_obliq_ma2,' Ma2随Ma1变化规律 ');
         ylabel(fig_obliq_ma2,'Ma_2');
         xlabel(fig_obliq_ma2,'Ma_1');
         grid(fig_obliq_ma2,'on')
@@ -238,14 +238,14 @@ switch case_index
         set(fig_obliq_r2r1,'GridLineStyle','--')
         set(fig_obliq_r2r1,'XScale', 'log') %x轴取对数坐标
         set(fig_obliq_r2r1,'Xtick',1:10)
-        title(fig_obliq_r2r1,['\rho_2','/','\rho_1','-','Ma_1 Figure'])
+        title(fig_obliq_r2r1,' ρ2/ρ1随Ma1变化规律 ')
         xlabel(fig_obliq_r2r1,'Ma_1')
         ylabel(fig_obliq_r2r1,['\rho_2','/','\rho_1'])
         % 内置函数画p2p1
         fimplicit(fig_obliq_p2p1,func_p2p1(theta),[1,10],'LineWidth',0.8);
         grid(fig_obliq_p2p1,'on')
         grid(fig_obliq_p2p1,'minor')
-        title(fig_obliq_p2p1,['p_2','/','p_1','-','Ma_1 Figure'])
+        title(fig_obliq_p2p1,' P2/P1随Ma1变化规律 ')
         xlabel(fig_obliq_p2p1,'Ma_1')
         ylabel(fig_obliq_p2p1,['p_2','/','p_1'])
         set(fig_obliq_p2p1,'GridLineStyle','--')
@@ -258,8 +258,8 @@ switch case_index
         set(fig_obliq_t2t1,'GridLineStyle','--')
         set(fig_obliq_t2t1,'YScale', 'log') %y轴取对数坐标
         set(fig_obliq_t2t1,'Xtick',1:10)
-        set(fig_obliq_t2t1,'Ytick',[1:10,13,17])
-        title(fig_obliq_t2t1,['T_2','/','T_1','-','Ma_1 Figure'])
+        set(fig_obliq_t2t1,'Ytick',[1:10,13,17,23,30,40,53,70,90])
+        title(fig_obliq_t2t1,' T2/T1随Ma1变化规律 ')
         xlabel(fig_obliq_t2t1,'Ma_1')
         ylabel(fig_obliq_t2t1,['T_2','/','T_1'])
         
@@ -280,7 +280,7 @@ switch case_index
         set(fig_obliq_beta,'XScale', 'log') %x轴取对数坐标
         set(fig_obliq_beta,'Xtick',1:10)
         axis(fig_obliq_beta,[1 10 0 90])
-        title(fig_obliq_beta,['\beta -','Ma_1',' Figure']);
+        title(fig_obliq_beta,' β随Ma1变化规律 ');
         ylabel(fig_obliq_beta,['\beta','/(°)']);
         xlabel(fig_obliq_beta,'Ma_1');
         grid(fig_obliq_beta,'on')
@@ -289,7 +289,7 @@ switch case_index
         % 画ma2-ma1
         plot(fig_obliq_ma2,fig_obliq_beta.Children.XData, obliquem1_m2(fig_obliq_beta.Children.XData,fig_obliq_beta.Children.YData,theta));
         set(fig_obliq_ma2,'Ytick',1:10)
-        title(fig_obliq_ma2,['Ma_2 -','Ma_1',' Figure']);
+        title(fig_obliq_ma2,' Ma2随Ma1变化规律 ');
         ylabel(fig_obliq_ma2,'Ma_2');
         xlabel(fig_obliq_ma2,'Ma_1');
         grid(fig_obliq_ma2,'on')
@@ -302,14 +302,14 @@ switch case_index
         set(fig_obliq_r2r1,'GridLineStyle','--')
         set(fig_obliq_r2r1,'XScale', 'log') %x轴取对数坐标
         set(fig_obliq_r2r1,'Xtick',1:10)
-        title(fig_obliq_r2r1,['\rho_2','/','\rho_1','-','Ma_1 Figure'])
+        title(fig_obliq_r2r1,' ρ2/ρ1随Ma1变化规律 ')
         xlabel(fig_obliq_r2r1,'Ma_1')
         ylabel(fig_obliq_r2r1,['\rho_2','/','\rho_1'])
         % 内置函数画p2p1
         fimplicit(fig_obliq_p2p1,func_p2p1(theta),[1,10],'LineWidth',0.8);
         grid(fig_obliq_p2p1,'on')
         grid(fig_obliq_p2p1,'minor')
-        title(fig_obliq_p2p1,['p_2','/','p_1','-','Ma_1 Figure'])
+        title(fig_obliq_p2p1,' P2/P1随Ma1变化规律 ')
         xlabel(fig_obliq_p2p1,'Ma_1')
         ylabel(fig_obliq_p2p1,['p_2','/','p_1'])
         set(fig_obliq_p2p1,'GridLineStyle','--')
@@ -322,8 +322,8 @@ switch case_index
         set(fig_obliq_t2t1,'GridLineStyle','--')
         set(fig_obliq_t2t1,'YScale', 'log') %y轴取对数坐标
         set(fig_obliq_t2t1,'Xtick',1:10)
-        set(fig_obliq_t2t1,'Ytick',[1:10,13,17])
-        title(fig_obliq_t2t1,['T_2','/','T_1','-','Ma_1 Figure'])
+        set(fig_obliq_t2t1,'Ytick',[1:10,13,17,23,30,40,53,70,90])
+        title(fig_obliq_t2t1,' T2/T1随Ma1变化规律 ')
         xlabel(fig_obliq_t2t1,'Ma_1')
         ylabel(fig_obliq_t2t1,['T_2','/','T_1'])
         
@@ -350,7 +350,7 @@ switch case_index
         set(fig_obliq_beta,'XScale', 'log') %x轴取对数坐标
         set(fig_obliq_beta,'Xtick',1:10)
         axis(fig_obliq_beta,[1 10 0 90])
-        title(fig_obliq_beta,['\beta -','Ma_1',' Figure']);
+        title(fig_obliq_beta,' β随Ma1变化规律 ');
         ylabel(fig_obliq_beta,['\beta','/(°)']);
         xlabel(fig_obliq_beta,'Ma_1');
         grid(fig_obliq_beta,'on')
@@ -359,7 +359,7 @@ switch case_index
         % 画ma2-ma1
         plot(fig_obliq_ma2,fig_obliq_beta.Children.XData, obliquem1_m2(fig_obliq_beta.Children.XData,fig_obliq_beta.Children.YData,theta));
         set(fig_obliq_ma2,'Ytick',1:10)
-        title(fig_obliq_ma2,['Ma_2 -','Ma_1',' Figure']);
+        title(fig_obliq_ma2,' Ma2随Ma1变化规律 ');
         ylabel(fig_obliq_ma2,'Ma_2');
         xlabel(fig_obliq_ma2,'Ma_1');
         grid(fig_obliq_ma2,'on')
@@ -372,14 +372,14 @@ switch case_index
         set(fig_obliq_r2r1,'GridLineStyle','--')
         set(fig_obliq_r2r1,'XScale', 'log') %x轴取对数坐标
         set(fig_obliq_r2r1,'Xtick',1:10)
-        title(fig_obliq_r2r1,['\rho_2','/','\rho_1','-','Ma_1 Figure'])
+        title(fig_obliq_r2r1,' ρ2/ρ1随Ma1变化规律 ')
         xlabel(fig_obliq_r2r1,'Ma_1')
         ylabel(fig_obliq_r2r1,['\rho_2','/','\rho_1'])
         % 内置函数画p2p1
         fimplicit(fig_obliq_p2p1,func_p2p1(theta),[1,10],'LineWidth',0.8);
         grid(fig_obliq_p2p1,'on')
         grid(fig_obliq_p2p1,'minor')
-        title(fig_obliq_p2p1,['p_2','/','p_1','-','Ma_1 Figure'])
+        title(fig_obliq_p2p1,' P2/P1随Ma1变化规律 ')
         xlabel(fig_obliq_p2p1,'Ma_1')
         ylabel(fig_obliq_p2p1,['p_2','/','p_1'])
         set(fig_obliq_p2p1,'GridLineStyle','--')
@@ -392,8 +392,8 @@ switch case_index
         set(fig_obliq_t2t1,'GridLineStyle','--')
         set(fig_obliq_t2t1,'YScale', 'log') %y轴取对数坐标
         set(fig_obliq_t2t1,'Xtick',1:10)
-        set(fig_obliq_t2t1,'Ytick',[1:10,13,17])
-        title(fig_obliq_t2t1,['T_2','/','T_1','-','Ma_1 Figure'])
+        set(fig_obliq_t2t1,'Ytick',[1:10,13,17,23,30,40,53,70,90])
+        title(fig_obliq_t2t1,' T2/T1随Ma1变化规律 ')
         xlabel(fig_obliq_t2t1,'Ma_1')
         ylabel(fig_obliq_t2t1,['T_2','/','T_1'])
         
