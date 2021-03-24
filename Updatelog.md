@@ -1,6 +1,6 @@
 ### Aerodynamics Parameter Quarter System(APQS) Update Log
 
-> Application Name: 空气动力学常用参数计算查询系统（APQS）
+> Application Name: 空气动力学激波参数计算系统（APQS）
 >
 > Author Name: 张卓立 王慕尧
 >
@@ -12,7 +12,7 @@
 >
 > Summary: 用于快捷查询正斜激波相关数值并绘图可视化
 >
-> Last Updated Date:  2021.3.19
+> Last Updated Date:  2021.3.24
 
 
 
@@ -168,3 +168,12 @@
 + 增加生成模板的功能
 + 修复了批量计算时，表格数据错误导致进度条无法自动消失的错误
 + 修复了保存文件时后缀起名为系统后缀名时，文件无法正常保存的错误
+
+###### APQS 21w11a3(1.4.4.210324_alpha) Release-notes：
+
+**时间**：2021.3.24
+
+**变化**：
+
++ 修改部分代码结构
++ 增加帮助文档，构建静态帮助网页
